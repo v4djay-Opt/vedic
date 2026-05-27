@@ -134,254 +134,283 @@ export default function KapilaPashuAaharPage() {
       <JsonLd schema={faqSchema as Record<string, unknown>} />
       <JsonLd schema={breadcrumbSchema as Record<string, unknown>} />
 
-      {/* ── 1. Breadcrumb ── */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <BreadcrumbList
-            crumbs={[
-              { label: 'Home', href: '/' },
-              { label: 'Products', href: '/products' },
-              { label: 'Kapila Pashu Aahar' },
-            ]}
-          />
+      {/* ── 2. Hero Banner ── */}
+      <section className="relative bg-deepGreen -mt-24 pt-24 flex items-center h-[55vh] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <svg className="absolute -top-20 -right-20 w-80 h-80 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <circle cx="100" cy="100" r="100" />
+          </svg>
+          <svg className="absolute top-1/3 -left-12 w-48 h-48 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <ellipse cx="100" cy="100" rx="100" ry="70" />
+          </svg>
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/90 text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-5">
+            ✓ AUTHORIZED DEALER — AYODHYA
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-black text-white leading-[1.1] tracking-tight">
+            Kapila Pashu Aahar
+            <br />
+            <span className="text-ochre">in Ayodhya</span>
+          </h1>
+          <p className="text-white/60 text-sm mt-2 font-devanagari leading-relaxed">
+            कपिला पशु आहार — अयोध्या के अधिकृत डीलर
+          </p>
+          <p className="text-white/80 text-base mt-5 leading-relaxed max-w-2xl mx-auto">
+            We are the authorized dealer of Kapila Pashu Aahar in Ayodhya and surrounding
+            areas. Genuine product, best price, and free delivery within 25km of Ayodhya.
+          </p>
+          <p className="text-white/50 text-sm mt-2 font-devanagari leading-relaxed max-w-2xl mx-auto">
+            हम अयोध्या और आसपास के क्षेत्रों में कपिला पशु आहार के अधिकृत डीलर हैं।
+            असली उत्पाद, सबसे अच्छी कीमत, और 25 किमी के भीतर मुफ्त डिलीवरी।
+          </p>
+        </div>
+      </section>
+
+      {/* ── Content + Sidebar ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8 md:space-y-10">
+
+            {/* ── 1. Benefits Grid ── */}
+            <section className="bg-sage/40 border border-deepGreen/20 rounded-2xl p-6 md:p-8 py-10 md:py-14">
+              <div>
+                <div className="mb-10 text-left">
+                  <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
+                    Benefits of Kapila Pashu Aahar
+                  </h2>
+                  <p className="text-gray-400 text-sm mt-1.5 font-devanagari">कपिला पशु आहार के फायदे</p>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                  {benefits.map((b) => (
+                    <div
+                      key={b.title}
+                      className="bg-white border border-deepGreen/10 rounded-2xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-deepGreen/30 transition-all duration-200"
+                    >
+                      <span className="text-3xl">{b.icon}</span>
+                      <div>
+                        <p className="font-bold text-deepGreen text-sm">{b.title}</p>
+                        <p className="text-gray-500 text-xs mt-1 leading-relaxed">{b.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* ── 2. Product Cards ── */}
+            <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 py-10 md:py-14">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                <ProductCard
+                  title="Kapila Pashu Aahar"
+                  titleHindi="कपिला पशु आहार"
+                  badge="Authorized Dealer"
+                  slug="kapila-pashu-aahar-ayodhya"
+                  inquiryBased={true}
+                />
+                <ProductCard
+                  title="Cattle Feed Mix"
+                  titleHindi="पशु आहार मिक्स"
+                  badge="Popular"
+                  slug="cattle-feed-dealer-ayodhya"
+                  inquiryBased={true}
+                />
+              </div>
+            </section>
+
+            {/* ── 3. Content ── */}
+            <section className="bg-cream border border-gray-200 rounded-2xl p-6 md:p-8 pt-14 md:pt-20 pb-10 md:pb-14 space-y-10 md:space-y-14">
+
+              {/* About */}
+              <div className="border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-3xl font-black text-deepGreen mb-2">
+                  About Kapila Pashu Aahar — Premium Cattle Feed in Ayodhya
+                </h2>
+                <p className="text-gray-400 text-sm font-devanagari mb-6">
+                  कपिला पशु आहार के बारे में — अयोध्या में प्रीमियम पशु आहार
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  Kapila Pashu Aahar is one of India&apos;s most trusted scientifically formulated cattle
+                  feed brands, designed to improve milk production, health, and vitality in dairy cows
+                  and buffaloes. Manufactured with a carefully balanced blend of proteins, carbohydrates,
+                  vitamins, and minerals, it is the preferred choice of dairy farmers across Uttar Pradesh,
+                  including the Ayodhya and Faizabad region.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  कपिला पशु आहार भारत के सबसे विश्वसनीय पशु आहार ब्रांड्स में से एक है। यह डेयरी
+                  गायों और भैंसों में दूध उत्पादन, स्वास्थ्य और जीवन शक्ति को बेहतर बनाने के लिए
+                  वैज्ञानिक रूप से तैयार किया गया है।
+                </p>
+              </div>
+
+              {/* Ingredients */}
+              <div className="bg-cream/40 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Key Ingredients and Nutritional Value
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  The Kapila Pashu Aahar formula contains de-oiled rice bran, cotton seed cake, maize,
+                  wheat bran, bypass protein, mineral mixture, and salt. This combination delivers a
+                  high-energy, high-protein diet that supports optimal rumen function and milk fat
+                  synthesis. The feed is manufactured under strict quality control at FSSAI-registered
+                  facilities, ensuring every bag meets certified nutritional standards.
+                </p>
+              </div>
+
+              {/* Milk Production */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  How Kapila Pashu Aahar Increases Milk Production
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Dairy farmers in Ayodhya who switched to Kapila Pashu Aahar report a consistent
+                  20–30% increase in daily milk yield within 4 to 6 weeks of regular use. The feed&apos;s
+                  bypass protein component is absorbed directly in the small intestine, maximizing amino
+                  acid availability for milk protein synthesis. Combined with a balanced energy-to-protein
+                  ratio, it reduces metabolic stress in lactating animals and improves both milk quantity
+                  and fat percentage — critical factors for dairy profitability in the Faizabad and
+                  Ayodhya market.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  अयोध्या में जिन किसानों ने कपिला पशु आहार का उपयोग शुरू किया, उन्होंने नियमित
+                  उपयोग के 4 से 6 हफ्तों के भीतर दैनिक दूध उत्पादन में 20–30% की वृद्धि दर्ज की है।
+                  बायपास प्रोटीन घटक सीधे छोटी आंत में अवशोषित होता है, जो दूध प्रोटीन संश्लेषण
+                  के लिए अमीनो एसिड की उपलब्धता को अधिकतम करता है।
+                </p>
+              </div>
+
+              {/* Why Buy */}
+              <div className="bg-cream/40 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-3xl font-black text-deepGreen mb-4">
+                  Why Buy from Vedic Heritage, Ayodhya?
+                </h2>
+                <p className="text-gray-700 leading-relaxed">
+                  Vedic Heritage is the officially authorized Kapila Pashu Aahar dealer in Ayodhya,
+                  Uttar Pradesh. When you buy from us, you receive 100% genuine product directly sourced
+                  from the authorized distribution network — no adulteration, no short-weight bags. We
+                  offer the most competitive pricing in the Ayodhya market, and all orders receive free
+                  doorstep delivery within 25km. Our team has been serving local dairy farmers since
+                  2020 and has built a reputation for timely delivery and honest pricing.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  वैदिक हेरिटेज अयोध्या, उत्तर प्रदेश में कपिला पशु आहार का आधिकारिक अधिकृत डीलर है।
+                  हमसे खरीदने पर आपको 100% असली उत्पाद की गारंटी मिलती है। हम अयोध्या बाज़ार में
+                  सबसे प्रतिस्पर्धी मूल्य प्रदान करते हैं और 25 किमी के भीतर सभी ऑर्डर पर मुफ्त
+                  डोरस्टेप डिलीवरी देते हैं।
+                </p>
+              </div>
+
+              {/* Service Areas */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Service Areas — Ayodhya, Faizabad, and Surrounding Villages
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  We deliver Kapila Pashu Aahar to farms and households across Ayodhya, Faizabad,
+                  Bikapur, Sohawal, Milkipur, Rudauli, Maya Bazar, Tanda, Akbarpur, Goshainganj,
+                  Kumarganj, Masaudha, and other nearby areas. For bulk orders by gaushala operators,
+                  dairy cooperatives, or large farms, we arrange delivery across all of Uttar Pradesh.
+                  Contact us to confirm availability in your village or town.
+                </p>
+              </div>
+
+            </section>
+
+          </div>
+
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-28 space-y-6">
+              {/* Contact Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <p className="text-xs font-bold text-deepGreen/70 uppercase tracking-widest mb-1">Authorized Dealer</p>
+                <h3 className="font-black text-deepGreen text-xl mb-1">Kapila Pashu Aahar</h3>
+                <p className="text-gray-400 text-sm font-devanagari mb-5">कपिला पशु आहार — अयोध्या</p>
+
+                <div className="space-y-3">
+                  <a
+                    href={WA_ORDER}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-deepGreen hover:bg-deepGreen/90 text-white font-semibold px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all text-sm w-full"
+                  >
+                    <WaIcon />
+                    WhatsApp pe Order Karein
+                  </a>
+                  <a
+                    href="tel:+919999999999"
+                    className="flex items-center justify-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-5 py-3 rounded-xl transition-all text-sm w-full"
+                  >
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
+                    </svg>
+                    Call Now
+                  </a>
+                </div>
+
+                <div className="pt-5 mt-5 border-t border-gray-100 space-y-2.5">
+                  {[
+                    { label: 'Genuine Product', icon: '✓' },
+                    { label: 'Best Price', icon: '✓' },
+                    { label: 'Free Delivery 25km', icon: '✓' },
+                  ].map((t) => (
+                    <div key={t.label} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
+                      <span className="text-deepGreen font-bold">{t.icon}</span>
+                      {t.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Info */}
+              <div className="bg-cream border border-gray-200 rounded-2xl p-6">
+                <p className="font-bold text-deepGreen text-sm mb-3">Quick Info</p>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">📍</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Location</p>
+                      <p className="text-gray-500">Ramnagar, Bikapur, Ayodhya</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">🕐</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Store Hours</p>
+                      <p className="text-gray-500">8AM – 7PM Daily</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">🚚</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Delivery</p>
+                      <p className="text-gray-500">Free within 25km</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Inquiry Form */}
+              <div className="bg-deepGreen border border-deepGreen/30 rounded-2xl p-6 shadow-md">
+                <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/80 text-[10px] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full mb-3">
+                  PLACE YOUR ORDER
+                </div>
+                <h3 className="text-lg font-black text-white mb-1">
+                  Order Kapila Pashu Aahar
+                </h3>
+                <p className="text-white/55 text-xs mb-5 font-devanagari">
+                  कपिला पशु आहार ऑर्डर करें
+                </p>
+                <InquiryForm defaultProduct="Kapila Pashu Aahar" />
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
 
-      {/* ── 2. Hero Block ── */}
-      <section className="bg-cream py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-            {/* Left */}
-            <div>
-              <div className="inline-flex items-center bg-deepGreen/10 border border-deepGreen/20 text-deepGreen text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-5">
-                ✓ AUTHORIZED DEALER — AYODHYA
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-black text-deepGreen leading-[1.1] tracking-tight">
-                Kapila Pashu Aahar
-                <br />
-                <span className="text-ochre">in Ayodhya</span>
-              </h1>
-              <p className="text-gray-400 text-sm mt-2 font-devanagari leading-relaxed">
-                कपिला पशु आहार — अयोध्या के अधिकृत डीलर
-              </p>
-              <p className="text-gray-700 text-base mt-5 leading-relaxed max-w-lg">
-                We are the authorized dealer of Kapila Pashu Aahar in Ayodhya and surrounding
-                areas. Genuine product, best price, and free delivery within 25km of Ayodhya.
-              </p>
-              <p className="text-gray-400 text-sm mt-2 font-devanagari leading-relaxed">
-                हम अयोध्या और आसपास के क्षेत्रों में कपिला पशु आहार के अधिकृत डीलर हैं।
-                असली उत्पाद, सबसे अच्छी कीमत, और 25 किमी के भीतर मुफ्त डिलीवरी।
-              </p>
-
-              <div className="flex flex-wrap gap-3 mt-7">
-                <a
-                  href={WA_ORDER}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-deepGreen hover:bg-deepGreen/90 text-white font-semibold px-6 py-3 rounded-xl shadow-md hover:shadow-lg transition-all text-sm"
-                >
-                  <WaIcon />
-                  WhatsApp pe Order Karein
-                </a>
-                <a
-                  href="tel:+919999999999"
-                  className="inline-flex items-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm"
-                >
-                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
-                  </svg>
-                  Call Now
-                </a>
-              </div>
-
-              <div className="flex flex-wrap gap-5 mt-6 pt-5 border-t border-deepGreen/10">
-                {['Genuine Product', 'Best Price', 'Free Delivery 25km'].map((t) => (
-                  <div key={t} className="flex items-center gap-1.5 text-sm text-deepGreen font-semibold">
-                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-72 sm:w-80 lg:w-[400px]">
-                <div className="absolute -top-3 -right-3 z-10 bg-deepGreen text-white text-[10px] font-black tracking-wide uppercase px-3 py-1.5 rounded-full shadow-md">
-                  Authorized Dealer
-                </div>
-                <div className="aspect-square bg-sage rounded-2xl border border-deepGreen/10 shadow-xl flex flex-col items-center justify-center gap-3">
-                  <div className="text-8xl">🐄</div>
-                  <div className="text-center px-6">
-                    <p className="text-deepGreen font-black text-lg">Kapila Pashu Aahar</p>
-                    <p className="text-gray-400 text-sm font-devanagari mt-1">कपिला पशु आहार</p>
-                    <p className="text-gray-400 text-xs mt-3 leading-relaxed">
-                      Competitive Price &nbsp;|&nbsp; Bulk Available
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. SEO Content ── */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          <h2 className="text-3xl font-black text-deepGreen mb-2">
-            About Kapila Pashu Aahar — Premium Cattle Feed in Ayodhya
-          </h2>
-          <p className="text-gray-400 text-sm font-devanagari mb-6">
-            कपिला पशु आहार के बारे में — अयोध्या में प्रीमियम पशु आहार
-          </p>
-
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Kapila Pashu Aahar is one of India&apos;s most trusted scientifically formulated cattle
-            feed brands, designed to improve milk production, health, and vitality in dairy cows
-            and buffaloes. Manufactured with a carefully balanced blend of proteins, carbohydrates,
-            vitamins, and minerals, it is the preferred choice of dairy farmers across Uttar Pradesh,
-            including the Ayodhya and Faizabad region.
-          </p>
-
-          <p className="text-gray-500 text-sm font-devanagari leading-relaxed mb-8">
-            कपिला पशु आहार भारत के सबसे विश्वसनीय पशु आहार ब्रांड्स में से एक है। यह डेयरी
-            गायों और भैंसों में दूध उत्पादन, स्वास्थ्य और जीवन शक्ति को बेहतर बनाने के लिए
-            वैज्ञानिक रूप से तैयार किया गया है।
-          </p>
-
-          <h3 className="text-xl font-bold text-deepGreen mt-8 mb-3">
-            Key Ingredients and Nutritional Value of Kapila Pashu Aahar
-          </h3>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            The Kapila Pashu Aahar formula contains de-oiled rice bran, cotton seed cake, maize,
-            wheat bran, bypass protein, mineral mixture, and salt. This combination delivers a
-            high-energy, high-protein diet that supports optimal rumen function and milk fat
-            synthesis. The feed is manufactured under strict quality control at FSSAI-registered
-            facilities, ensuring every bag meets certified nutritional standards.
-          </p>
-
-          <h3 className="text-xl font-bold text-deepGreen mt-8 mb-3">
-            How Kapila Pashu Aahar Increases Milk Production in Cows — Ayodhya Farmers&apos; Experience
-          </h3>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Dairy farmers in Ayodhya who switched to Kapila Pashu Aahar report a consistent
-            20–30% increase in daily milk yield within 4 to 6 weeks of regular use. The feed&apos;s
-            bypass protein component is absorbed directly in the small intestine, maximizing amino
-            acid availability for milk protein synthesis. Combined with a balanced energy-to-protein
-            ratio, it reduces metabolic stress in lactating animals and improves both milk quantity
-            and fat percentage — critical factors for dairy profitability in the Faizabad and
-            Ayodhya market.
-          </p>
-
-          <p className="text-gray-500 text-sm font-devanagari leading-relaxed mb-8">
-            अयोध्या में जिन किसानों ने कपिला पशु आहार का उपयोग शुरू किया, उन्होंने नियमित
-            उपयोग के 4 से 6 हफ्तों के भीतर दैनिक दूध उत्पादन में 20–30% की वृद्धि दर्ज की है।
-            बायपास प्रोटीन घटक सीधे छोटी आंत में अवशोषित होता है, जो दूध प्रोटीन संश्लेषण
-            के लिए अमीनो एसिड की उपलब्धता को अधिकतम करता है।
-          </p>
-
-          <h2 className="text-3xl font-black text-deepGreen mt-10 mb-3">
-            Why Buy Kapila Pashu Aahar from Vedic Heritage, Ayodhya?
-          </h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Vedic Heritage is the officially authorized Kapila Pashu Aahar dealer in Ayodhya,
-            Uttar Pradesh. When you buy from us, you receive 100% genuine product directly sourced
-            from the authorized distribution network — no adulteration, no short-weight bags. We
-            offer the most competitive pricing in the Ayodhya market, and all orders receive free
-            doorstep delivery within 25km. Our team has been serving local dairy farmers since
-            2020 and has built a reputation for timely delivery and honest pricing.
-          </p>
-
-          <p className="text-gray-500 text-sm font-devanagari leading-relaxed mb-8">
-            वैदिक हेरिटेज अयोध्या, उत्तर प्रदेश में कपिला पशु आहार का आधिकारिक अधिकृत डीलर है।
-            हमसे खरीदने पर आपको 100% असली उत्पाद की गारंटी मिलती है। हम अयोध्या बाज़ार में
-            सबसे प्रतिस्पर्धी मूल्य प्रदान करते हैं और 25 किमी के भीतर सभी ऑर्डर पर मुफ्त
-            डोरस्टेप डिलीवरी देते हैं।
-          </p>
-
-          <h3 className="text-xl font-bold text-deepGreen mt-8 mb-3">
-            Service Areas — Ayodhya, Faizabad, and Surrounding Villages
-          </h3>
-          <p className="text-gray-700 leading-relaxed">
-            We deliver Kapila Pashu Aahar to farms and households across Ayodhya, Faizabad,
-            Bikapur, Sohawal, Milkipur, Rudauli, Maya Bazar, Tanda, Akbarpur, Goshainganj,
-            Kumarganj, Masaudha, and other nearby areas. For bulk orders by gaushala operators,
-            dairy cooperatives, or large farms, we arrange delivery across all of Uttar Pradesh.
-            Contact us to confirm availability in your village or town.
-          </p>
-        </div>
-      </section>
-
-      {/* ── 4. Benefits Grid ── */}
-      <section className="bg-sage/40 py-14 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
-              Benefits of Kapila Pashu Aahar
-            </h2>
-            <p className="text-gray-400 text-sm mt-1.5 font-devanagari">कपिला पशु आहार के फायदे</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {benefits.map((b) => (
-              <div
-                key={b.title}
-                className="bg-white border border-deepGreen/10 rounded-2xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-deepGreen/30 transition-all duration-200"
-              >
-                <span className="text-3xl">{b.icon}</span>
-                <div>
-                  <p className="font-bold text-deepGreen text-sm">{b.title}</p>
-                  <p className="text-gray-500 text-xs mt-1 leading-relaxed">{b.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. Packs ── */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
-              Available Packs of Kapila Pashu Aahar in Ayodhya
-            </h2>
-            <p className="text-gray-400 text-sm mt-1.5 font-devanagari">
-              उपलब्ध पैक आकार — अयोध्या में डिलीवरी
-            </p>
-          </div>
-          <div className="hidden sm:grid grid-cols-4 bg-deepGreen text-white text-xs font-bold uppercase tracking-widest rounded-xl px-5 py-3 gap-4 mb-2">
-            <span>Pack</span><span>Weight</span><span>Best For</span><span></span>
-          </div>
-          <div className="space-y-3">
-            {packs.map((p, i) => (
-              <div
-                key={i}
-                className="border border-gray-200 rounded-xl px-5 py-4 sm:grid sm:grid-cols-4 sm:items-center sm:gap-4 flex flex-col gap-3 bg-white hover:border-deepGreen/30 hover:shadow-md transition-all"
-              >
-                <p className="font-bold text-deepGreen text-sm">{p.name}</p>
-                <p className="text-gray-600 text-sm font-semibold">{p.weight}</p>
-                <p className="text-gray-500 text-sm">{p.bestFor}</p>
-                <a
-                  href={`https://wa.me/919999999999?text=${encodeURIComponent(`नमस्ते! मुझे Kapila Pashu Aahar ${p.wa} चाहिए।`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 bg-deepGreen hover:bg-deepGreen/90 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors"
-                >
-                  <WaIcon />
-                  Inquire on WhatsApp
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. Service Areas ── */}
+      {/* ── 4. Service Areas Banner ── */}
       <section className="bg-deepGreen py-14 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">
@@ -414,9 +443,9 @@ export default function KapilaPashuAaharPage() {
         </div>
       </section>
 
-      {/* ── 7. FAQ ── */}
+      {/* ── 5. FAQ ── */}
       <section className="bg-white py-14 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <FaqSection
             faqs={faqs}
             heading="Frequently Asked Questions — Kapila Pashu Aahar Ayodhya"
@@ -425,25 +454,7 @@ export default function KapilaPashuAaharPage() {
         </div>
       </section>
 
-      {/* ── 8. Inquiry Form ── */}
-      <section className="bg-deepGreen/95 py-14 md:py-20">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/80 text-[11px] font-bold tracking-[0.14em] uppercase px-3.5 py-1.5 rounded-full mb-5">
-            PLACE YOUR ORDER
-          </div>
-          <h2 className="text-3xl font-black text-white mb-2">
-            Order Kapila Pashu Aahar in Ayodhya
-          </h2>
-          <p className="text-white/55 text-sm mb-8 font-devanagari">
-            कपिला पशु आहार ऑर्डर करें — हम 24 घंटे में जवाब देते हैं
-          </p>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 text-left">
-            <InquiryForm defaultProduct="Kapila Pashu Aahar" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── 9. Related Products ── */}
+      {/* ── 6. Related Products ── */}
       <section className="bg-cream py-14 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-8">

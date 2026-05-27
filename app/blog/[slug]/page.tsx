@@ -238,19 +238,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     <>
       <JsonLd schema={articleSchema as Record<string, unknown>} />
 
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <BreadcrumbList
-            crumbs={[
-              { label: 'Home', href: '/' },
-              { label: 'Blog', href: '/blog' },
-              { label: post.title },
-            ]}
-          />
-        </div>
-      </div>
-
       {/* Hero image */}
       {post.mainImage && (
         <div className="relative w-full h-64 sm:h-80 md:h-[420px] bg-sage overflow-hidden">

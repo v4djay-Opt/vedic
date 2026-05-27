@@ -5,9 +5,9 @@ import { client } from '@/lib/sanity.client';
 import { getAllPosts, urlFor, type PostSummary } from '@/lib/sanity.queries';
 
 export const metadata: Metadata = {
-  title: 'Vedic Farming Tips & Puja Knowledge Blog | Ayodhya',
+  title: 'Pashu Aahar Blog Bikapur — Call 7840882270 | Vedic Heritage',
   description:
-    'Expert articles on cattle farming, Vedic rituals, havan practices and dairy farming from Ayodhya. Hindi and English guides by Vedic Heritage.',
+    'Expert articles on cattle feed, dairy farming tips, Vedic rituals and havan practices from Ramnagar, Bikapur. Hindi and English guides by Vedic Heritage.',
 };
 
 async function getPosts(): Promise<PostSummary[]> {
@@ -79,19 +79,33 @@ export default async function BlogPage() {
 
   return (
     <main>
-      {/* Hero */}
-      <section className="bg-cream py-14 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center bg-deepGreen/10 border border-deepGreen/20 text-deepGreen text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-6">
+      {/* Hero Banner */}
+      <section className="relative bg-deepGreen -mt-24 pt-24 flex items-center h-[55vh] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <svg className="absolute -top-20 -right-20 w-80 h-80 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <circle cx="100" cy="100" r="100" />
+          </svg>
+          <svg className="absolute top-1/3 -left-12 w-48 h-48 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <ellipse cx="100" cy="100" rx="100" ry="70" />
+          </svg>
+          <svg className="absolute bottom-8 right-8 w-32 h-32 text-white/10" viewBox="0 0 100 100">
+            <circle cx="20" cy="20" r="8" /><circle cx="50" cy="20" r="8" /><circle cx="80" cy="20" r="8" />
+            <circle cx="20" cy="50" r="8" /><circle cx="50" cy="50" r="8" /><circle cx="80" cy="50" r="8" />
+            <circle cx="20" cy="80" r="8" /><circle cx="50" cy="80" r="8" /><circle cx="80" cy="80" r="8" />
+          </svg>
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/90 text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-6">
             OUR BLOG
           </div>
-          <h1 className="text-4xl sm:text-5xl font-black text-deepGreen leading-[1.1] tracking-tight">
+          <h1 className="text-4xl sm:text-5xl font-black text-white leading-[1.1] tracking-tight">
             Vedic Knowledge &amp; Farming Tips
           </h1>
-          <p className="text-gray-400 text-base mt-2 font-devanagari">
+          <p className="text-white/60 text-base mt-2 font-devanagari">
             वैदिक ज्ञान और खेती की जानकारी
           </p>
-          <p className="text-gray-600 mt-4 max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-white/80 mt-4 max-w-xl mx-auto text-sm leading-relaxed">
             Expert articles on cattle feed, havan rituals, dairy farming, and Vedic living from
             our team in Ayodhya.
           </p>

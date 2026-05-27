@@ -55,6 +55,20 @@ export interface Product {
   badge?: string;
 }
 
+export interface Brand {
+  name: string;
+  slug: SanitySlug;
+  logo?: SanityImageAsset;
+  tagline?: string;
+  description?: string;
+  website?: string;
+  featured?: boolean;
+}
+
+export interface BrandWithProducts extends Brand {
+  products: Product[];
+}
+
 export interface SiteSettings {
   title?: string;
   description?: string;
@@ -117,7 +131,10 @@ export const getAllProducts = `
     unit,
     description,
     featured,
-    badge
+    badge,
+    "brand": brand->name,
+    "brandSlug": brand->slug.current,
+    "category": category->title
   }
 `;
 
@@ -156,6 +173,42 @@ export const getFeaturedProducts = `
     unit,
     badge
   }
+`;
+
+export const getAllBrands = `
+  *[_type == "brand"] | order(name asc) {
+    name,
+    slug,
+    logo,
+    tagline,
+    description,
+    featured
+  }
+`;
+
+export const getBrandBySlug = `
+  *[_type == "brand" && slug.current == $slug][0] {
+    name,
+    slug,
+    logo,
+    tagline,
+    description,
+    website,
+    featured,
+    "products": *[_type == "product" && brand._ref == ^._id] | order(_createdAt desc) {
+      title,
+      titleHindi,
+      slug,
+      mainImage,
+      price,
+      unit,
+      badge
+    }
+  }
+`;
+
+export const getAllBrandSlugs = `
+  *[_type == "brand"] { "slug": slug.current }
 `;
 
 // ---------------------------------------------------------------------------

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 const heroStats = [
@@ -15,8 +14,8 @@ const statsBar = [
 ];
 
 const WA_HREF =
-  'https://wa.me/919999999999?text=' +
-  encodeURIComponent('नमस्ते! मुझे Kapila Pashu Aahar के बारे में जानकारी चाहिए।');
+  'https://wa.me/919911662492?text=' +
+  encodeURIComponent('नमस्ते! मुझे Vedic Heritage के products के बारे में जानकारी चाहिए।');
 
 export default function HeroSection() {
   return (
@@ -69,7 +68,7 @@ export default function HeroSection() {
                   WhatsApp pe Order Karein
                 </Link>
                 <a
-                  href="tel:+919999999999"
+                  href="tel:+917840882270"
                   className="inline-flex items-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 text-sm"
                 >
                   <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -93,30 +92,22 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Right — Image */}
+            {/* Right — Video */}
             <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
               <div className="relative w-72 h-72 sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px]">
                 {/* Decorative rotated bg slab */}
                 <div className="absolute inset-6 bg-deepGreen/10 rounded-3xl rotate-6" />
                 <div className="absolute inset-6 bg-ochre/10 rounded-3xl -rotate-3" />
-                {/* Main image frame */}
+                {/* Main video frame */}
                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl ring-1 ring-deepGreen/10">
-                  <Image
-                    src="/hero-cattle.jpg"
-                    alt="Kapila Pashu Aahar — Premium Cattle Feed Ayodhya"
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="(max-width: 640px) 288px, (max-width: 1024px) 380px, 460px"
+                  <video
+                    src="/videos/hero-bg.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  {/* Fallback overlay shown when image is missing */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-sage">
-                    <div className="text-center">
-                      <div className="text-6xl mb-2">🐄</div>
-                      <p className="text-deepGreen font-bold text-sm">Kapila Pashu Aahar</p>
-                      <p className="text-gray-500 text-xs font-devanagari">कपिला पशु आहार</p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

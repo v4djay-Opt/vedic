@@ -26,18 +26,18 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://vedicheritage.in'),
   title: {
-    default: 'Vedic Heritage — Ayodhya | Pashu Aahar & Puja Products',
-    template: '%s | Vedic Heritage',
+    default: 'Vedic Heritage — Ramnagar, Bikapur | Pashu Aahar & Puja Samagri',
+    template: '%s — Call 7840882270 | Vedic Heritage',
   },
   description:
-    'Kapila Pashu Aahar dealer, pure havan samagri & cow dung cakes in Ayodhya. Free delivery 25km. Call now.',
+    'Kapila, Bansuri, Brajwasi, Godrej cattle feed dealer in Bikapur, Ayodhya District. Pure puja samagri from Ram ki Nagri. Call 7840882270. 8AM–7PM.',
   openGraph: {
     type: 'website',
     siteName: 'Vedic Heritage',
     title: 'Vedic Heritage — Ayodhya | Pashu Aahar & Puja Products',
     description:
       'Kapila Pashu Aahar dealer, pure havan samagri & cow dung cakes in Ayodhya. Free delivery 25km. Call now.',
-    locale: 'en_IN',
+    locale: 'hi_IN',
     url: 'https://vedicheritage.in',
     images: [
       {

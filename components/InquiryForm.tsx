@@ -4,6 +4,10 @@ import { useState } from 'react';
 
 const PRODUCTS = [
   'Kapila Pashu Aahar',
+  'Bansuri Pashu Aahar',
+  'Brajwasi Feeds',
+  'Godrej Agrovet Cattle Feed',
+  'Mineral Mixture / Khal / Chuni',
   'Cattle Feed Mix',
   'Havan Samagri',
   'Cow Dung Cake',
@@ -29,7 +33,7 @@ export default function InquiryForm({ defaultProduct = '' }: InquiryFormProps) {
     e.preventDefault();
     const text = `नमस्ते! मेरा नाम ${form.name} है।\nProduct: ${form.product || 'General'}\nPhone: ${form.phone}\nMessage: ${form.message}`;
     window.open(
-      `https://wa.me/919999999999?text=${encodeURIComponent(text)}`,
+      `https://wa.me/919911662492?text=${encodeURIComponent(text)}`,
       '_blank'
     );
   }

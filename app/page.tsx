@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import HeroSection from '@/components/HeroSection';
 import ProductCard from '@/components/ProductCard';
-import InquiryForm from '@/components/InquiryForm';
 import JsonLd, { localBusinessSchema, webSiteSchema } from '@/components/JsonLd';
-import NewsletterForm from '@/components/NewsletterForm';
+import { client } from '@/lib/sanity.client';
+import { getRecentPosts, urlFor, type PostSummary } from '@/lib/sanity.queries';
 
 export const metadata: Metadata = {
   title: 'Kapila Pashu Aahar Dealer Ayodhya | Vedic Heritage',
@@ -137,7 +138,8 @@ function SectionPill({ label }: { label: string }) {
 }
 
 /* ─── Page ───────────────────────────────────────────────────── */
-export default function HomePage() {
+export default async function HomePage() {
+  const recentPosts = await client.fetch<PostSummary[]>(getRecentPosts).catch(() => []);
   return (
     <>
       <JsonLd schema={localBusinessSchema as Record<string, unknown>} />
@@ -284,7 +286,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap justify-center gap-4 mt-12">
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919911662492"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-deepGreen font-bold px-7 py-3 rounded-xl hover:bg-cream transition-colors text-sm shadow-md"
@@ -292,7 +294,7 @@ export default function HomePage() {
               Start on WhatsApp
             </a>
             <a
-              href="tel:+919999999999"
+              href="tel:+917840882270"
               className="inline-flex items-center gap-2 border-2 border-white text-white hover:bg-white hover:text-deepGreen font-bold px-7 py-3 rounded-xl transition-all text-sm"
             >
               Call Us Now
@@ -301,116 +303,90 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── 6. Expert Help + Inquiry Form ── */}
-      <section className="bg-deepGreen/95 py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
-            {/* Left — Contact options */}
-            <div>
-              <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/80 text-[11px] font-bold tracking-[0.14em] uppercase px-3.5 py-1.5 rounded-full mb-5">
-                GET EXPERT HELP
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight mb-4">
-                Need Help Choosing
-                <br />
-                the Right Feed?
-              </h2>
-              <p className="text-white/65 text-sm leading-relaxed mb-8 max-w-sm">
-                Our team in Ayodhya will guide you to the right product for your cattle and budget.
-                Reach us any way you prefer.
-              </p>
-              <div className="space-y-4">
-                {/* Call */}
-                <a
-                  href="tel:+919999999999"
-                  className="flex items-center gap-4 bg-white/10 hover:bg-white/15 border border-white/15 rounded-xl px-5 py-4 transition-colors group"
-                >
-                  <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
-                    </svg>
-                  </span>
-                  <div>
-                    <p className="text-white font-semibold text-sm">Call Directly</p>
-                    <p className="text-white/55 text-xs">+91 99999 99999</p>
-                  </div>
-                  <svg className="w-4 h-4 text-white/40 group-hover:text-white/70 ml-auto transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-                {/* WhatsApp */}
-                <a
-                  href="https://wa.me/919999999999"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-white/10 hover:bg-white/15 border border-white/15 rounded-xl px-5 py-4 transition-colors group"
-                >
-                  <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                    </svg>
-                  </span>
-                  <div>
-                    <p className="text-white font-semibold text-sm">WhatsApp</p>
-                    <p className="text-white/55 text-xs">Quick reply guaranteed</p>
-                  </div>
-                  <svg className="w-4 h-4 text-white/40 group-hover:text-white/70 ml-auto transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-                {/* Visit */}
-                <div className="flex items-center gap-4 bg-white/10 border border-white/15 rounded-xl px-5 py-4">
-                  <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </span>
-                  <div>
-                    <p className="text-white font-semibold text-sm">Visit Us</p>
-                    <p className="text-white/55 text-xs">Ayodhya, Uttar Pradesh — 224001</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right — Inquiry Form */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8">
-              <h3 className="text-white font-bold text-lg mb-1">Send an Inquiry</h3>
-              <p className="text-white/50 text-xs mb-6">We&apos;ll respond within 1 hour on WhatsApp.</p>
-              <InquiryForm />
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. Newsletter / Blog CTA ── */}
+      {/* ── 7. Blog Preview ── */}
       <section className="bg-cream border-t border-deepGreen/10 py-16 md:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center bg-deepGreen/10 border border-deepGreen/20 text-deepGreen text-[11px] font-bold tracking-[0.14em] uppercase px-3.5 py-1.5 rounded-full mb-5">
-            🌱 VEDIC TIPS & BLOGS
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center bg-deepGreen/10 border border-deepGreen/20 text-deepGreen text-[11px] font-bold tracking-[0.14em] uppercase px-3.5 py-1.5 rounded-full mb-5">
+              🌱 VEDIC TIPS & BLOGS
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
+              Latest from Our Blog
+            </h2>
+            <p className="text-gray-400 text-sm mt-2 font-devanagari">
+              वैदिक ज्ञान से जुड़े रहें
+            </p>
+            <p className="text-gray-600 mt-4 max-w-md mx-auto text-sm leading-relaxed">
+              Weekly blogs on cattle care, farming tips, and puja guidance.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
-            Stay Updated on Vedic Tips
-          </h2>
-          <p className="text-gray-400 text-sm mt-2 font-devanagari">
-            वैदिक ज्ञान से जुड़े रहें
-          </p>
-          <p className="text-gray-600 mt-4 max-w-md mx-auto text-sm leading-relaxed">
-            Weekly blogs on cattle care, farming tips, and puja guidance — straight to your inbox.
-          </p>
-          <NewsletterForm />
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 mt-6 text-deepGreen hover:text-ochre font-semibold text-sm transition-colors"
-          >
-            Browse our blog
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </Link>
+          {recentPosts.length === 0 ? (
+            <div className="text-center py-10">
+              <div className="text-5xl mb-4">📖</div>
+              <p className="text-deepGreen font-bold">Blogs coming soon — check back weekly</p>
+              <p className="text-gray-400 text-sm mt-1 font-devanagari">जल्द ही ब्लॉग पोस्ट आएंगी</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {recentPosts.map((post) => (
+                <Link
+                  key={post.slug.current}
+                  href={`/blog/${post.slug.current}`}
+                  className="group flex flex-col bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg hover:border-deepGreen/30 transition-all duration-200"
+                >
+                  <div className="relative h-48 bg-sage overflow-hidden">
+                    {post.mainImage ? (
+                      <Image
+                        src={urlFor(post.mainImage).width(600).height(400).url()}
+                        alt={post.mainImage.alt ?? post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-5xl select-none">📜</div>
+                    )}
+                    {post.category && (
+                      <span className="absolute top-3 left-3 bg-deepGreen text-white text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col flex-1 p-5">
+                    <h3 className="font-bold text-deepGreen text-base leading-snug group-hover:text-ochre transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    {post.excerpt && (
+                      <p className="text-gray-500 text-sm mt-2 leading-relaxed line-clamp-2 flex-1">
+                        {post.excerpt}
+                      </p>
+                    )}
+                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">
+                      <time className="text-gray-400 text-xs">
+                        {post.publishedAt
+                          ? new Date(post.publishedAt).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+                          : ''}
+                      </time>
+                      <span className="text-deepGreen text-xs font-semibold group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5">
+                        Read More →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+          <div className="text-center mt-10">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1.5 text-deepGreen hover:text-ochre font-semibold text-sm transition-colors"
+            >
+              Browse all blogs
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </section>
     </>

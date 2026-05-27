@@ -111,199 +111,277 @@ export default function CattleFeedDealerPage() {
       <JsonLd schema={faqSchema as Record<string, unknown>} />
       <JsonLd schema={breadcrumbSchema as Record<string, unknown>} />
 
-      {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <BreadcrumbList crumbs={[{ label: 'Home', href: '/' }, { label: 'Products', href: '/products' }, { label: 'Cattle Feed Dealer Ayodhya' }]} />
+      {/* Hero Banner */}
+      <section className="relative bg-deepGreen -mt-24 pt-24 flex items-center h-[55vh] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <svg className="absolute -top-20 -right-20 w-80 h-80 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <circle cx="100" cy="100" r="100" />
+          </svg>
+          <svg className="absolute top-1/3 -left-12 w-48 h-48 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <ellipse cx="100" cy="100" rx="100" ry="70" />
+          </svg>
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/90 text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-5">
+            ✓ TRUSTED DEALER — AYODHYA & FAIZABAD
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-black text-white leading-[1.1] tracking-tight">
+            Cattle Feed Dealer
+            <br /><span className="text-ochre">in Ayodhya | Faizabad</span>
+          </h1>
+          <p className="text-white/60 text-sm mt-2 font-devanagari leading-relaxed">
+            पशु आहार डीलर — अयोध्या, फैजाबाद
+          </p>
+          <p className="text-white/80 text-base mt-5 leading-relaxed max-w-2xl mx-auto">
+            Vedic Heritage is your trusted cattle feed dealer in Ayodhya and Faizabad. We
+            stock multiple premium brands, offer bulk supply, and deliver free within 25km.
+          </p>
+          <p className="text-white/50 text-sm mt-2 font-devanagari leading-relaxed max-w-2xl mx-auto">
+            वैदिक हेरिटेज अयोध्या और फैजाबाद में आपका विश्वसनीय पशु आहार डीलर है।
+            हम कई प्रीमियम ब्रांड स्टॉक करते हैं, थोक सप्लाई देते हैं और 25 किमी के भीतर मुफ्त डिलीवरी करते हैं।
+          </p>
+        </div>
+      </section>
+
+      {/* ── Content + Sidebar ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8 md:space-y-10">
+
+            {/* ── 3. Benefits Grid ── */}
+            <section className="bg-sage/40 border border-deepGreen/20 rounded-2xl p-6 md:p-8 py-10 md:py-14">
+              <div>
+                <div className="mb-10 text-left">
+                  <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
+                    Why Choose Vedic Heritage for Cattle Feed?
+                  </h2>
+                  <p className="text-gray-400 text-sm mt-1.5 font-devanagari">वैदिक हेरिटेज से पशु आहार क्यों खरीदें?</p>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                  {benefits.map((b) => (
+                    <div key={b.title} className="bg-white border border-deepGreen/10 rounded-2xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-deepGreen/30 transition-all duration-200">
+                      <span className="text-3xl">{b.icon}</span>
+                      <div>
+                        <p className="font-bold text-deepGreen text-sm">{b.title}</p>
+                        <p className="text-gray-500 text-xs mt-1 leading-relaxed">{b.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* ── 4. Product Cards ── */}
+            <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 py-10 md:py-14">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                <ProductCard
+                  title="Cattle Feed Mix"
+                  titleHindi="पशु आहार मिक्स"
+                  badge="Popular"
+                  slug="cattle-feed-dealer-ayodhya"
+                  inquiryBased={true}
+                />
+                <ProductCard
+                  title="Kapila Pashu Aahar"
+                  titleHindi="कपिला पशु आहार"
+                  badge="Authorized Dealer"
+                  slug="kapila-pashu-aahar-ayodhya"
+                  inquiryBased={true}
+                />
+              </div>
+            </section>
+
+            {/* ── 5. Content ── */}
+            <section className="bg-cream border border-gray-200 rounded-2xl p-6 md:p-8 pt-14 md:pt-20 pb-10 md:pb-14 space-y-10 md:space-y-14">
+
+              {/* About */}
+              <div className="border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-3xl font-black text-deepGreen mb-2">
+                  Cattle Feed Dealer in Ayodhya — Quality Feed for Dairy Cows and Buffaloes
+                </h2>
+                <p className="text-gray-400 text-sm font-devanagari mb-6">
+                  अयोध्या में पशु आहार डीलर — डेयरी गाय और भैंस के लिए गुणवत्ता आहार
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  Vedic Heritage has been a trusted name for cattle feed supply in Ayodhya and the wider
+                  Faizabad district since 2020. We stock a carefully curated range of scientifically
+                  formulated cattle feeds suited to the specific needs of dairy cows, buffaloes, and
+                  mixed livestock common across the Ayodhya region. Whether you are a small farmer with
+                  two or three cattle or a large gaushala managing hundreds of animals, we have the right
+                  feed and the right quantities for your operation.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  वैदिक हेरिटेज 2020 से अयोध्या और फैजाबाद जिले में पशु आहार की आपूर्ति में एक
+                  विश्वसनीय नाम रहा है। हम वैज्ञानिक रूप से तैयार पशु आहार की एक सावधानीपूर्वक
+                  चुनी हुई रेंज स्टॉक करते हैं।
+                </p>
+              </div>
+
+              {/* Types of Feed */}
+              <div className="bg-cream/40 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Types of Cattle Feed Available
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Our product range includes concentrated dairy cattle feeds (daaney/pellets), bypass
+                  protein supplements, mineral mixtures, cotton seed cake, de-oiled rice bran, and
+                  complete ration mixes. Our flagship product, Kapila Pashu Aahar, is an all-in-one
+                  formulated feed that delivers balanced nutrition in a single bag — ideal for farmers
+                  who want simplicity and proven results. We also stock specialty buffalo feeds with
+                  higher fat-producing ingredients for the Murrah and Surti breeds commonly found in
+                  the Ayodhya and Barabanki region.
+                </p>
+              </div>
+
+              {/* Why Quality */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Why Quality Cattle Feed Matters
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  The quality of cattle feed directly determines milk yield, fat percentage, and the
+                  long-term reproductive health of dairy animals. Substandard or adulterated feeds are
+                  unfortunately common in many local markets and can cause digestive disorders, reduced
+                  fertility, and even early culling of animals. At Vedic Heritage, every brand we stock
+                  is sourced from FSSAI-registered manufacturers with certified nutritional profiles.
+                  We never compromise on quality — and our repeat customers across Bikapur, Sohawal,
+                  Milkipur, and surrounding areas are a testament to that commitment.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  पशु आहार की गुणवत्ता सीधे दूध उत्पादन, वसा प्रतिशत और डेयरी पशुओं के दीर्घकालिक
+                  प्रजनन स्वास्थ्य को निर्धारित करती है। वैदिक हेरिटेज में, हम जो भी ब्रांड स्टॉक
+                  करते हैं वे FSSAI-पंजीकृत निर्माताओं से प्रमाणित पोषण प्रोफाइल के साथ आते हैं।
+                </p>
+              </div>
+
+              {/* Bulk Supply */}
+              <div className="bg-cream/40 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-3xl font-black text-deepGreen mb-4">
+                  Bulk Cattle Feed Supply — Gaushalas and Dairy Farms
+                </h2>
+                <p className="text-gray-700 leading-relaxed">
+                  We specialise in bulk cattle feed supply for gaushalas, registered dairy societies,
+                  and large private dairy farms across Ayodhya district. Our bulk pricing is among the
+                  most competitive in the region, and we offer flexible ordering — you can start with
+                  25kg bags and scale to full pallet deliveries as your needs grow. For standing orders
+                  (monthly subscriptions), we offer priority delivery and locked-in rates, ensuring you
+                  never face stock shortages during peak seasons.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  हम अयोध्या जिले की गौशालाओं, पंजीकृत डेयरी सोसाइटियों और बड़े निजी डेयरी
+                  फार्मों के लिए थोक पशु आहार आपूर्ति में विशेषज्ञ हैं। हमारी थोक कीमत क्षेत्र
+                  में सबसे प्रतिस्पर्धी है।
+                </p>
+              </div>
+
+              {/* Service Areas */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Serving Farmers Across Ayodhya, Faizabad, Bikapur and Beyond
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Our delivery network covers all major cattle-farming areas in the Ayodhya and Faizabad
+                  belt, including Bikapur, Sohawal, Milkipur, Rudauli, Goshainganj, Kumarganj, and
+                  Masaudha. Call or WhatsApp us to check availability and get same-day or next-day
+                  delivery for most areas within 25km of Ayodhya city.
+                </p>
+              </div>
+
+            </section>
+
+          </div>
+
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-28 space-y-6">
+              {/* Contact Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <p className="text-xs font-bold text-deepGreen/70 uppercase tracking-widest mb-1">Trusted Dealer</p>
+                <h3 className="font-black text-deepGreen text-xl mb-1">Cattle Feed</h3>
+                <p className="text-gray-400 text-sm font-devanagari mb-5">पशु आहार — अयोध्या</p>
+
+                <div className="space-y-3">
+                  <a
+                    href={WA_ORDER}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-deepGreen hover:bg-deepGreen/90 text-white font-semibold px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all text-sm w-full"
+                  >
+                    <WaIcon />
+                    WhatsApp pe Order Karein
+                  </a>
+                  <a
+                    href="tel:+919999999999"
+                    className="flex items-center justify-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-5 py-3 rounded-xl transition-all text-sm w-full"
+                  >
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
+                    </svg>
+                    Call Now
+                  </a>
+                </div>
+
+                <div className="pt-5 mt-5 border-t border-gray-100 space-y-2.5">
+                  {[
+                    { label: 'Multiple Brands', icon: '✓' },
+                    { label: 'Bulk Supply', icon: '✓' },
+                    { label: 'Free Delivery 25km', icon: '✓' },
+                  ].map((t) => (
+                    <div key={t.label} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
+                      <span className="text-deepGreen font-bold">{t.icon}</span>
+                      {t.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Info */}
+              <div className="bg-cream border border-gray-200 rounded-2xl p-6">
+                <p className="font-bold text-deepGreen text-sm mb-3">Quick Info</p>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">📍</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Location</p>
+                      <p className="text-gray-500">Ayodhya, Uttar Pradesh</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">🕐</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Store Hours</p>
+                      <p className="text-gray-500">8AM – 7PM Daily</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">🚚</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Delivery</p>
+                      <p className="text-gray-500">Free within 25km</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Inquiry Form */}
+              <div className="bg-deepGreen border border-deepGreen/30 rounded-2xl p-6 shadow-md">
+                <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/80 text-[10px] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full mb-3">
+                  PLACE YOUR ORDER
+                </div>
+                <h3 className="text-lg font-black text-white mb-1">
+                  Order Cattle Feed in Ayodhya
+                </h3>
+                <p className="text-white/55 text-xs mb-5 font-devanagari">
+                  पशु आहार ऑर्डर करें
+                </p>
+                <InquiryForm defaultProduct="Cattle Feed Mix" />
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
-
-      {/* Hero */}
-      <section className="bg-cream py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            <div>
-              <div className="inline-flex items-center bg-deepGreen/10 border border-deepGreen/20 text-deepGreen text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-5">
-                ✓ TRUSTED DEALER — AYODHYA & FAIZABAD
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-black text-deepGreen leading-[1.1] tracking-tight">
-                Cattle Feed Dealer
-                <br /><span className="text-ochre">in Ayodhya | Faizabad</span>
-              </h1>
-              <p className="text-gray-400 text-sm mt-2 font-devanagari leading-relaxed">
-                पशु आहार डीलर — अयोध्या, फैजाबाद
-              </p>
-              <p className="text-gray-700 text-base mt-5 leading-relaxed max-w-lg">
-                Vedic Heritage is your trusted cattle feed dealer in Ayodhya and Faizabad. We
-                stock multiple premium brands, offer bulk supply, and deliver free within 25km.
-              </p>
-              <p className="text-gray-400 text-sm mt-2 font-devanagari leading-relaxed">
-                वैदिक हेरिटेज अयोध्या और फैजाबाद में आपका विश्वसनीय पशु आहार डीलर है।
-                हम कई प्रीमियम ब्रांड स्टॉक करते हैं, थोक सप्लाई देते हैं और 25 किमी के भीतर मुफ्त डिलीवरी करते हैं।
-              </p>
-              <div className="flex flex-wrap gap-3 mt-7">
-                <a href={WA_ORDER} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-deepGreen hover:bg-deepGreen/90 text-white font-semibold px-6 py-3 rounded-xl shadow-md transition-all text-sm">
-                  <WaIcon />WhatsApp pe Order Karein
-                </a>
-                <a href="tel:+919999999999" className="inline-flex items-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-6 py-3 rounded-xl transition-all text-sm">
-                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" /></svg>
-                  Call Now
-                </a>
-              </div>
-              <div className="flex flex-wrap gap-5 mt-6 pt-5 border-t border-deepGreen/10">
-                {['Multiple Brands', 'Bulk Supply', 'Free Delivery 25km'].map((t) => (
-                  <div key={t} className="flex items-center gap-1.5 text-sm text-deepGreen font-semibold">
-                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex justify-center lg:justify-end">
-              <div className="relative w-72 sm:w-80 lg:w-[400px]">
-                <div className="absolute -top-3 -right-3 z-10 bg-deepGreen text-white text-[10px] font-black tracking-wide uppercase px-3 py-1.5 rounded-full shadow-md">Bulk Available</div>
-                <div className="aspect-square bg-sage rounded-2xl border border-deepGreen/10 shadow-xl flex flex-col items-center justify-center gap-3">
-                  <div className="text-8xl">🌾</div>
-                  <div className="text-center px-6">
-                    <p className="text-deepGreen font-black text-lg">Cattle Feed</p>
-                    <p className="text-gray-400 text-sm font-devanagari mt-1">पशु आहार</p>
-                    <p className="text-gray-400 text-xs mt-3">Multiple Brands &nbsp;|&nbsp; Bulk Rates</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEO Content */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-deepGreen mb-2">
-            Cattle Feed Dealer in Ayodhya — Quality Feed for Dairy Cows and Buffaloes
-          </h2>
-          <p className="text-gray-400 text-sm font-devanagari mb-6">
-            अयोध्या में पशु आहार डीलर — डेयरी गाय और भैंस के लिए गुणवत्ता आहार
-          </p>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Vedic Heritage has been a trusted name for cattle feed supply in Ayodhya and the wider
-            Faizabad district since 2020. We stock a carefully curated range of scientifically
-            formulated cattle feeds suited to the specific needs of dairy cows, buffaloes, and
-            mixed livestock common across the Ayodhya region. Whether you are a small farmer with
-            two or three cattle or a large gaushala managing hundreds of animals, we have the right
-            feed and the right quantities for your operation.
-          </p>
-          <p className="text-gray-500 text-sm font-devanagari leading-relaxed mb-8">
-            वैदिक हेरिटेज 2020 से अयोध्या और फैजाबाद जिले में पशु आहार की आपूर्ति में एक
-            विश्वसनीय नाम रहा है। हम वैज्ञानिक रूप से तैयार पशु आहार की एक सावधानीपूर्वक
-            चुनी हुई रेंज स्टॉक करते हैं।
-          </p>
-
-          <h3 className="text-xl font-bold text-deepGreen mt-8 mb-3">
-            Types of Cattle Feed Available at Our Ayodhya Store
-          </h3>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Our product range includes concentrated dairy cattle feeds (daaney/pellets), bypass
-            protein supplements, mineral mixtures, cotton seed cake, de-oiled rice bran, and
-            complete ration mixes. Our flagship product, Kapila Pashu Aahar, is an all-in-one
-            formulated feed that delivers balanced nutrition in a single bag — ideal for farmers
-            who want simplicity and proven results. We also stock specialty buffalo feeds with
-            higher fat-producing ingredients for the Murrah and Surti breeds commonly found in
-            the Ayodhya and Barabanki region.
-          </p>
-
-          <h3 className="text-xl font-bold text-deepGreen mt-8 mb-3">
-            Why Quality Cattle Feed Matters for Dairy Farmers in Faizabad and Ayodhya
-          </h3>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            The quality of cattle feed directly determines milk yield, fat percentage, and the
-            long-term reproductive health of dairy animals. Substandard or adulterated feeds are
-            unfortunately common in many local markets and can cause digestive disorders, reduced
-            fertility, and even early culling of animals. At Vedic Heritage, every brand we stock
-            is sourced from FSSAI-registered manufacturers with certified nutritional profiles.
-            We never compromise on quality — and our repeat customers across Bikapur, Sohawal,
-            Milkipur, and surrounding areas are a testament to that commitment.
-          </p>
-          <p className="text-gray-500 text-sm font-devanagari leading-relaxed mb-8">
-            पशु आहार की गुणवत्ता सीधे दूध उत्पादन, वसा प्रतिशत और डेयरी पशुओं के दीर्घकालिक
-            प्रजनन स्वास्थ्य को निर्धारित करती है। वैदिक हेरिटेज में, हम जो भी ब्रांड स्टॉक
-            करते हैं वे FSSAI-पंजीकृत निर्माताओं से प्रमाणित पोषण प्रोफाइल के साथ आते हैं।
-          </p>
-
-          <h2 className="text-3xl font-black text-deepGreen mt-10 mb-3">
-            Bulk Cattle Feed Supply — Ayodhya Gaushalas and Dairy Farms
-          </h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            We specialise in bulk cattle feed supply for gaushalas, registered dairy societies,
-            and large private dairy farms across Ayodhya district. Our bulk pricing is among the
-            most competitive in the region, and we offer flexible ordering — you can start with
-            25kg bags and scale to full pallet deliveries as your needs grow. For standing orders
-            (monthly subscriptions), we offer priority delivery and locked-in rates, ensuring you
-            never face stock shortages during peak seasons.
-          </p>
-          <p className="text-gray-500 text-sm font-devanagari leading-relaxed mb-6">
-            हम अयोध्या जिले की गौशालाओं, पंजीकृत डेयरी सोसाइटियों और बड़े निजी डेयरी
-            फार्मों के लिए थोक पशु आहार आपूर्ति में विशेषज्ञ हैं। हमारी थोक कीमत क्षेत्र
-            में सबसे प्रतिस्पर्धी है।
-          </p>
-
-          <h3 className="text-xl font-bold text-deepGreen mt-8 mb-3">
-            Serving Cattle Farmers Across Ayodhya, Faizabad, Bikapur and Beyond
-          </h3>
-          <p className="text-gray-700 leading-relaxed">
-            Our delivery network covers all major cattle-farming areas in the Ayodhya and Faizabad
-            belt, including Bikapur, Sohawal, Milkipur, Rudauli, Goshainganj, Kumarganj, and
-            Masaudha. Call or WhatsApp us to check availability and get same-day or next-day
-            delivery for most areas within 25km of Ayodhya city.
-          </p>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="bg-sage/40 py-14 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">Why Choose Vedic Heritage for Cattle Feed?</h2>
-            <p className="text-gray-400 text-sm mt-1.5 font-devanagari">वैदिक हेरिटेज से पशु आहार क्यों खरीदें?</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-            {benefits.map((b) => (
-              <div key={b.title} className="bg-white border border-deepGreen/10 rounded-2xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-deepGreen/30 transition-all duration-200">
-                <span className="text-3xl">{b.icon}</span>
-                <div>
-                  <p className="font-bold text-deepGreen text-sm">{b.title}</p>
-                  <p className="text-gray-500 text-xs mt-1 leading-relaxed">{b.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Packs */}
-      <section className="bg-white py-14 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">Cattle Feed Pack Sizes Available in Ayodhya</h2>
-            <p className="text-gray-400 text-sm mt-1.5 font-devanagari">उपलब्ध पैक आकार</p>
-          </div>
-          <div className="hidden sm:grid grid-cols-4 bg-deepGreen text-white text-xs font-bold uppercase tracking-widest rounded-xl px-5 py-3 gap-4 mb-2">
-            <span>Pack</span><span>Weight</span><span>Best For</span><span></span>
-          </div>
-          <div className="space-y-3">
-            {packs.map((p, i) => (
-              <div key={i} className="border border-gray-200 rounded-xl px-5 py-4 sm:grid sm:grid-cols-4 sm:items-center sm:gap-4 flex flex-col gap-3 bg-white hover:border-deepGreen/30 hover:shadow-md transition-all">
-                <p className="font-bold text-deepGreen text-sm">{p.name}</p>
-                <p className="text-gray-600 text-sm font-semibold">{p.weight}</p>
-                <p className="text-gray-500 text-sm">{p.bestFor}</p>
-                <a href={`https://wa.me/919999999999?text=${encodeURIComponent(`नमस्ते! मुझे ${p.wa} चाहिए।`)}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 bg-deepGreen hover:bg-deepGreen/90 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors">
-                  <WaIcon />Inquire on WhatsApp
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Service Areas */}
       <section className="bg-deepGreen py-14 md:py-20">
@@ -322,20 +400,8 @@ export default function CattleFeedDealerPage() {
 
       {/* FAQ */}
       <section className="bg-white py-14 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <FaqSection faqs={faqs} heading="Cattle Feed FAQs — Ayodhya Farmers" headingHindi="अक्सर पूछे जाने वाले सवाल" />
-        </div>
-      </section>
-
-      {/* Inquiry */}
-      <section className="bg-deepGreen/95 py-14 md:py-20">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/80 text-[11px] font-bold tracking-[0.14em] uppercase px-3.5 py-1.5 rounded-full mb-5">PLACE YOUR ORDER</div>
-          <h2 className="text-3xl font-black text-white mb-2">Order Cattle Feed in Ayodhya</h2>
-          <p className="text-white/55 text-sm mb-8 font-devanagari">पशु आहार ऑर्डर करें — हम 24 घंटे में जवाब देते हैं</p>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 sm:p-8 text-left">
-            <InquiryForm defaultProduct="Cattle Feed Mix" />
-          </div>
         </div>
       </section>
 

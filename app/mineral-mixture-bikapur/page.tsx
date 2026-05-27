@@ -1,0 +1,511 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import JsonLd from '@/components/JsonLd';
+import BreadcrumbList from '@/components/BreadcrumbList';
+import FaqSection, { type FaqItem } from '@/components/FaqSection';
+import InquiryForm from '@/components/InquiryForm';
+import ProductCard from '@/components/ProductCard';
+
+/* ─── SEO Metadata ─────────────────────────────────────────── */
+export const metadata: Metadata = {
+  title: 'Mineral Mixture Cattle Bikapur — Call 7840882270 | Vedic Heritage',
+  description:
+    'Buy Mineral Mixture, Khal, and Chuni for cattle in Bikapur, Ayodhya. Visit Vedic Heritage store 8AM–7PM. Call 7840882270. पशुओं के लिए मिनरल मिक्सचर बीकापुर।',
+  alternates: { canonical: '/mineral-mixture-bikapur' },
+};
+
+/* ─── JSON-LD Schemas ──────────────────────────────────────── */
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'Mineral Mixture for Cattle',
+  description:
+    'Mineral Mixture, Khal, and Chuni for cattle available at Vedic Heritage, Ramnagar, Bikapur, Ayodhya District. Visit our store 8AM–7PM.',
+  brand: { '@type': 'Brand', name: 'Vedic Heritage' },
+  offers: {
+    '@type': 'Offer',
+    availability: 'https://schema.org/InStock',
+    areaServed: { '@type': 'City', name: 'Bikapur', addressRegion: 'Uttar Pradesh' },
+    seller: {
+      '@type': 'LocalBusiness',
+      name: 'Vedic Heritage',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Bikapur',
+        addressRegion: 'Uttar Pradesh',
+        postalCode: '224001',
+      },
+    },
+  },
+};
+
+const faqs: FaqItem[] = [
+  {
+    q: 'Bikapur mein cattle ke liye mineral mixture kahan milega?',
+    qHindi: 'बीकापुर में पशुओं के लिए मिनरल मिक्सचर कहाँ मिलेगा?',
+    a: 'Vedic Heritage store in Ramnagar, Bikapur stocks high-quality mineral mixture for cattle, along with khal and chuni. Visit us between 8AM–7PM or call 7840882270 to confirm stock.',
+  },
+  {
+    q: 'Mineral mixture ki price kya hai Bikapur mein?',
+    qHindi: 'मिनरल मिक्सचर की कीमत क्या है?',
+    a: 'We offer mineral mixture, khal, and chuni at competitive market rates in Bikapur. Pricing varies by quantity. Call 7840882270 or WhatsApp 9911662492 for current rates and bulk discounts.',
+  },
+  {
+    q: 'Mineral mixture se cattle ko kya fayda hota hai?',
+    qHindi: 'मिनरल मिक्सचर से पशुओं को क्या फायदा होता है?',
+    a: 'Mineral mixture prevents mineral deficiencies that cause reduced milk yield, weak bones, poor fertility, and low immunity in cattle. Regular supplementation improves milk production, reproductive health, and overall vitality of dairy animals.',
+  },
+  {
+    q: 'Khal aur Chuni kya hai aur cattle ke liye kaise use karte hain?',
+    qHindi: 'खल और चुनी क्या है और पशुओं के लिए कैसे इस्तेमाल करते हैं?',
+    a: 'Khal (oil cake) is a by-product of oil extraction from mustard, groundnut, or cotton seeds — rich in protein. Chuni is a coarse fibre-rich by-product from grain processing. Both are excellent cattle feed supplements when mixed with main feed, providing additional protein and fibre for better digestion and milk production.',
+  },
+  {
+    q: 'Wholesale mein mineral mixture ka rate kya hai?',
+    qHindi: 'थोक में मिनरल मिक्सचर का रेट क्या है?',
+    a: 'Special bulk rates are available for gaushala operators, dairy farms, and cooperatives purchasing mineral mixture, khal, or chuni in large quantities. Contact us on WhatsApp 9911662492 or call 7840882270 for wholesale pricing in Bikapur and surrounding areas.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://vedicheritage.in' },
+    { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://vedicheritage.in/products' },
+    { '@type': 'ListItem', position: 3, name: 'Mineral Mixture Bikapur', item: 'https://vedicheritage.in/mineral-mixture-bikapur' },
+  ],
+};
+
+/* ─── Static data ──────────────────────────────────────────── */
+const benefits = [
+  { icon: '🦴', title: 'Strong Bones', desc: 'Prevents calcium and phosphorus deficiency' },
+  { icon: '🥛', title: 'More Milk', desc: 'Improves milk yield by 10–15%' },
+  { icon: '💪', title: 'Better Immunity', desc: 'Zinc, selenium, and copper boost immunity' },
+  { icon: '🐄', title: 'Fertility', desc: 'Improves conception rates in dairy animals' },
+  { icon: '🌿', title: 'Complete Nutrition', desc: 'Balances daily feed deficiencies' },
+  { icon: '💰', title: 'Affordable', desc: 'Low cost, high return on investment' },
+];
+
+const products = [
+  { name: 'Mineral Mixture', desc: 'Complete macro and micro mineral supplement for cattle', icon: '⚗️', wa: 'Mineral Mixture' },
+  { name: 'Mustard Khal (Sarson Ki Khal)', desc: 'High-protein oil cake from mustard seeds', icon: '🟡', wa: 'Mustard Khal' },
+  { name: 'Groundnut Khal (Moongfali Khal)', desc: 'Protein-rich groundnut oil cake', icon: '🥜', wa: 'Groundnut Khal' },
+  { name: 'Chuni (Dan Ki Chuni)', desc: 'Coarse grain by-product rich in fibre', icon: '🌾', wa: 'Chuni' },
+];
+
+const serviceAreas = [
+  'Bikapur', 'Ramnagar', 'Bharatkund', 'Milkipur', 'Sohawal',
+  'Goshainganj', 'Ayodhya', 'Faizabad',
+];
+
+const relatedProducts = [
+  { title: 'Bansuri Pashu Aahar', titleHindi: 'बांसुरी पशु आहार', badge: 'Best Seller', slug: 'bansuri-pashu-aahar-bikapur', inquiryBased: true as const },
+  { title: 'Brajwasi Feeds', titleHindi: 'ब्रजवासी फीड्स', badge: 'Popular', slug: 'brajwasi-feeds-bikapur', inquiryBased: true as const },
+  { title: 'Godrej Agrovet', titleHindi: 'गोदरेज एग्रोवेट', badge: 'Trusted', slug: 'godrej-agrovet-bikapur', inquiryBased: true as const },
+];
+
+const WA_ORDER = `https://wa.me/919911662492?text=${encodeURIComponent('नमस्ते! मुझे Mineral Mixture / Khal / Chuni चाहिए। कृपया price बताएं।')}`;
+
+/* ─── WA icon shared ───────────────────────────────────────── */
+function WaIcon() {
+  return (
+    <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}
+
+/* ─── Page ─────────────────────────────────────────────────── */
+export default function MineralMixturePage() {
+  return (
+    <>
+      <JsonLd schema={productSchema as Record<string, unknown>} />
+      <JsonLd schema={faqSchema as Record<string, unknown>} />
+      <JsonLd schema={breadcrumbSchema as Record<string, unknown>} />
+
+      {/* ── 2. Hero Banner ── */}
+      <section className="relative bg-deepGreen -mt-24 pt-24 flex items-center h-[55vh] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <svg className="absolute -top-20 -right-20 w-80 h-80 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <circle cx="100" cy="100" r="100" />
+          </svg>
+          <svg className="absolute top-1/3 -left-12 w-48 h-48 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+            <ellipse cx="100" cy="100" rx="100" ry="70" />
+          </svg>
+          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/90 text-[11px] font-bold tracking-[0.15em] uppercase px-3.5 py-1.5 rounded-full mb-5">
+            ✓ AVAILABLE IN BIKAPUR
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-black text-white leading-[1.1] tracking-tight">
+            Mineral Mixture for Cattle Bikapur — Call 7840882270
+          </h1>
+          <p className="text-white/60 text-sm mt-2 font-devanagari leading-relaxed">
+            पशुओं के लिए मिनरल मिक्सचर बीकापुर — कॉल ७८४०८८२२७०
+          </p>
+          <p className="text-white/80 text-base mt-5 leading-relaxed max-w-2xl mx-auto">
+            Buy mineral mixture, khal (oil cake), and chuni for your cattle at Vedic Heritage,
+            Ramnagar, Bikapur. Essential supplements for healthy, high-yielding dairy animals.
+            Visit our store 8AM–7PM daily.
+          </p>
+          <p className="text-white/50 text-sm mt-2 font-devanagari leading-relaxed max-w-2xl mx-auto">
+            वैदिक हेरिटेज बीकापुर में पशुओं के लिए मिनरल मिक्सचर, खल और चुनी उपलब्ध है। स्वस्थ और
+            अधिक दूध देने वाले पशुओं के लिए आवश्यक सप्लीमेंट्स। सुबह ८ बजे से शाम ७ बजे तक।
+          </p>
+        </div>
+      </section>
+
+      {/* ── Content + Sidebar ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8 md:space-y-10">
+
+            {/* ── 3. Benefits Grid ── */}
+            <section className="bg-sage/40 border border-deepGreen/20 rounded-2xl p-6 md:p-8 py-10 md:py-14">
+              <div>
+                <div className="mb-10 text-left">
+                  <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
+                    Benefits of Mineral Mixture for Cattle
+                  </h2>
+                  <p className="text-gray-400 text-sm mt-1.5 font-devanagari">पशुओं के लिए मिनरल मिक्सचर के फायदे</p>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+                  {benefits.map((b) => (
+                    <div
+                      key={b.title}
+                      className="bg-white border border-deepGreen/10 rounded-2xl p-5 flex flex-col gap-3 hover:shadow-md hover:border-deepGreen/30 transition-all duration-200"
+                    >
+                      <span className="text-3xl">{b.icon}</span>
+                      <div>
+                        <p className="font-bold text-deepGreen text-sm">{b.title}</p>
+                        <p className="text-gray-500 text-xs mt-1 leading-relaxed">{b.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* ── 4. Products Table ── */}
+            <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 py-10 md:py-14">
+              <div className="text-center mb-10">
+                <h2 className="text-3xl sm:text-4xl font-black text-deepGreen">
+                  Mineral Mixture, Khal & Chuni Available in Bikapur
+                </h2>
+                <p className="text-gray-400 text-sm mt-1.5 font-devanagari">
+                  बीकापुर स्टोर पर उपलब्ध उत्पाद
+                </p>
+              </div>
+              <div className="space-y-3">
+                {products.map((p, i) => (
+                  <div
+                    key={i}
+                    className="border border-gray-200 rounded-xl px-5 py-4 sm:grid sm:grid-cols-[1fr_2fr_1fr] sm:items-center sm:gap-4 flex flex-col gap-2 bg-white hover:border-deepGreen/30 hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{p.icon}</span>
+                      <p className="font-bold text-deepGreen text-sm">{p.name}</p>
+                    </div>
+                    <p className="text-gray-500 text-sm">{p.desc}</p>
+                    <a
+                      href={`https://wa.me/919911662492?text=${encodeURIComponent(`नमस्ते! मुझे ${p.wa} चाहिए। कृपया price बताएं।`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 bg-deepGreen hover:bg-deepGreen/90 text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors"
+                    >
+                      <WaIcon />
+                      Inquire on WhatsApp
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* ── 5. Content ── */}
+            <section className="bg-cream border border-gray-200 rounded-2xl p-6 md:p-8 pt-14 md:pt-20 pb-10 md:pb-14 space-y-10 md:space-y-14">
+
+              {/* About */}
+              <div className="border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-3xl font-black text-deepGreen mb-2">
+                  About Mineral Mixture for Cattle — Essential Supplement in Bikapur
+                </h2>
+                <p className="text-gray-400 text-sm font-devanagari mb-6">
+                  पशुओं के लिए मिनरल मिक्सचर के बारे में — बीकापुर में आवश्यक सप्लीमेंट
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  Mineral mixture is one of the most critical yet often overlooked supplements in dairy
+                  cattle nutrition. Even when farmers provide adequate quantities of green fodder and
+                  concentrate feed, mineral deficiencies commonly occur due to depleted soil quality across
+                  the Ayodhya and Faizabad region. At Vedic Heritage in Ramnagar, Bikapur, we stock
+                  premium-quality mineral mixture specifically formulated for the nutritional needs of
+                  dairy cows and buffaloes in Eastern Uttar Pradesh. Our mineral mixture contains balanced
+                  proportions of calcium, phosphorus, magnesium, sulphur, iron, copper, zinc, manganese,
+                  iodine, and selenium — all essential for maintaining bone strength, milk production,
+                  reproductive health, and immune function in lactating animals.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  मिनरल मिक्सचर डेयरी पशु पोषण में सबसे महत्वपूर्ण लेकिन अक्सर अनदेखे किए जाने वाले
+                  सप्लीमेंट्स में से एक है। वैदिक हेरिटेज रामनगर, बीकापुर में हम पूर्वी उत्तर प्रदेश में डेयरी
+                  गायों और भैंसों की पोषण आवश्यकताओं के लिए विशेष रूप से तैयार प्रीमियम-क्वालिटी मिनरल
+                  मिक्सचर रखते हैं।
+                </p>
+              </div>
+
+              {/* Khal and Chuni */}
+              <div className="bg-cream/40 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  What is Khal and Chuni — Protein and Fibre Supplements
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Khal, also known as oil cake, is the solid residue left after oil extraction from
+                  mustard, groundnut, cotton, or sesame seeds. It is one of the most concentrated and
+                  affordable sources of vegetable protein for cattle, typically containing 30–45%
+                  crude protein depending on the source. Mustard khal (sarson ki khal) is particularly
+                  popular in the Ayodhya region due to the abundant mustard cultivation in Eastern UP.
+                  Chuni is a coarse, fibre-rich by-product obtained during grain processing — it adds
+                  bulk to the diet, improves rumen function, and helps prevent digestive disorders. When
+                  mixed with the main concentrate feed in appropriate ratios, both khal and chuni
+                  provide a cost-effective way to boost daily protein and fibre intake for dairy animals.
+                </p>
+              </div>
+
+              {/* Deficiency Signs */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Signs of Mineral Deficiency and How Mixture Helps
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Common signs of mineral deficiency in dairy cattle include reduced milk yield, delayed
+                  conception, weak bones leading to lameness, poor coat condition, low appetite, and
+                  increased susceptibility to diseases. Calcium and phosphorus deficiency causes milk
+                  fever and weak skeletal structure. Zinc deficiency leads to poor wound healing and skin
+                  problems. Iron deficiency causes anaemia and reduced energy levels. Selenium and iodine
+                  deficiency affects thyroid function and reproductive efficiency. Regular
+                  supplementation with our mineral mixture prevents all these conditions, ensuring your
+                  cattle remain productive and healthy throughout their lactation cycle.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  डेयरी पशुओं में खनिज की कमी के सामान्य संकेतों में दूध उत्पादन में कमी, विलंबित गर्भधारण,
+                  कमजोर हड्डियां, खराब कोट की स्थिति, कम भूख और बीमारियों के प्रति अधिक संवेदनशीलता शामिल है।
+                  हमारे मिनरल मिक्सचर की नियमित सप्लीमेंटेशन ये सब रोकता है।
+                </p>
+              </div>
+
+              {/* Why Buy */}
+              <div className="bg-cream/40 border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h2 className="text-3xl font-black text-deepGreen mb-4">
+                  Why Buy from Vedic Heritage, Bikapur?
+                </h2>
+                <p className="text-gray-700 leading-relaxed">
+                  Vedic Heritage in Ramnagar, Bikapur is your trusted local source for all cattle feed
+                  supplements including mineral mixture, mustard khal, groundnut khal, and chuni. We
+                  source our products from reputable manufacturers and suppliers who maintain strict
+                  quality standards. Every batch of mineral mixture is checked for proper mineral ratios
+                  and freshness before stocking. Our khal and chuni are sourced fresh to ensure maximum
+                  protein content and minimal moisture. We offer transparent pricing that reflects the
+                  Bikapur market rates, with volume discounts for bulk buyers such as dairy
+                  cooperatives and gaushala operators. Our staff understands local farming practices
+                  and can advise you on the correct mixing ratios and feeding schedules for your
+                  specific herd size. Visit us between 8AM and 7PM, or call 7840882270 for stock
+                  confirmation before your visit.
+                </p>
+                <p className="text-gray-500 text-sm font-devanagari leading-relaxed mt-4">
+                  वैदिक हेरिटेज रामनगर, बीकापुर मिनरल मिक्सचर, सरसों की खल, मूंगफली की खल और चुनी सहित सभी
+                  पशु आहार सप्लीमेंट्स के लिए आपका विश्वसनीय स्थानीय स्रोत है। हम प्रतिष्ठित निर्माताओं से
+                  उत्पाद खरीदते हैं। हमारा कर्मचारी स्थानीय खेती प्रथाओं को समझता है और सही मिश्रण अनुपात
+                  की सलाह दे सकता है। सुबह ८ बजे से शाम ७ बजे तक आएं।
+                </p>
+              </div>
+
+              {/* Service Areas */}
+              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8">
+                <h3 className="text-2xl font-black text-deepGreen mb-4">
+                  Service Areas — Bikapur, Ramnagar, and Surrounding Villages
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Our Vedic Heritage store in Ramnagar, Bikapur serves walk-in customers from Bikapur,
+                  Ramnagar, Bharatkund, Milkipur, Sohawal, Goshainganj, Ayodhya, Faizabad, and nearby
+                  villages. We are open daily from 8AM to 7PM. For large quantity requirements by
+                  dairy farms, cooperatives, and gaushalas, please call 7840882270 or WhatsApp
+                  9911662492 in advance to pre-book stock and discuss bulk pricing. We do not offer
+                  home delivery — all products must be collected from our store, allowing you to verify
+                  quality, freshness, and packaging before purchase.
+                </p>
+              </div>
+
+            </section>
+
+          </div>
+
+          {/* Sidebar */}
+          <aside className="lg:col-span-1">
+            <div className="sticky top-28 space-y-6">
+              {/* Contact Card */}
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                <p className="text-xs font-bold text-deepGreen/70 uppercase tracking-widest mb-1">Available in Bikapur</p>
+                <h3 className="font-black text-deepGreen text-xl mb-1">Mineral Mixture</h3>
+                <p className="text-gray-400 text-sm font-devanagari mb-5">मिनरल मिक्सचर — बीकापुर</p>
+
+                <div className="space-y-3">
+                  <a
+                    href={WA_ORDER}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-deepGreen hover:bg-deepGreen/90 text-white font-semibold px-5 py-3 rounded-xl shadow-md hover:shadow-lg transition-all text-sm w-full"
+                  >
+                    <WaIcon />
+                    WhatsApp pe Inquiry Karein
+                  </a>
+                  <a
+                    href="tel:+917840882270"
+                    className="flex items-center justify-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-5 py-3 rounded-xl transition-all text-sm w-full"
+                  >
+                    <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
+                    </svg>
+                    Call 7840882270
+                  </a>
+                </div>
+
+                <div className="pt-5 mt-5 border-t border-gray-100 space-y-2.5">
+                  {[
+                    { label: 'Genuine Product', icon: '✓' },
+                    { label: 'Best Price in Bikapur', icon: '✓' },
+                    { label: 'Visit Store 8AM–7PM', icon: '✓' },
+                  ].map((t) => (
+                    <div key={t.label} className="flex items-center gap-2 text-sm text-gray-600 font-medium">
+                      <span className="text-deepGreen font-bold">{t.icon}</span>
+                      {t.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Info */}
+              <div className="bg-cream border border-gray-200 rounded-2xl p-6">
+                <p className="font-bold text-deepGreen text-sm mb-3">Quick Info</p>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">📍</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Location</p>
+                      <p className="text-gray-500">Ramnagar, Bikapur, Ayodhya</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">🕐</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Store Hours</p>
+                      <p className="text-gray-500">8AM – 7PM Daily</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg">🚚</span>
+                    <div>
+                      <p className="text-gray-700 font-medium">Delivery</p>
+                      <p className="text-gray-500">Store pickup only</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Inquiry Form */}
+              <div className="bg-deepGreen border border-deepGreen/30 rounded-2xl p-6 shadow-md">
+                <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/80 text-[10px] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full mb-3">
+                  PLACE YOUR INQUIRY
+                </div>
+                <h3 className="text-lg font-black text-white mb-1">
+                  Inquire About Mineral Mixture
+                </h3>
+                <p className="text-white/55 text-xs mb-5 font-devanagari">
+                  मिनरल मिक्सचर के बारे में पूछताछ करें
+                </p>
+                <InquiryForm defaultProduct="Mineral Mixture / Khal / Chuni" />
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      {/* ── 6. Service Areas ── */}
+      <section className="bg-deepGreen py-14 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-black text-white mb-2">
+            We Serve These Areas from Our Bikapur Store
+          </h2>
+          <p className="text-white/60 text-sm font-devanagari mb-8">
+            हम इन क्षेत्रों को अपने बीकापुर स्टोर से सेवा देते हैं
+          </p>
+          <div className="flex flex-wrap justify-center gap-2.5 max-w-3xl mx-auto">
+            {serviceAreas.map((area) => (
+              <span
+                key={area}
+                className="bg-white/10 border border-white/20 text-white text-sm font-medium px-4 py-2 rounded-full hover:bg-white/15 transition-colors"
+              >
+                📍 {area}
+              </span>
+            ))}
+          </div>
+          <p className="text-white/50 text-sm mt-8">
+            Store Timings: 8AM – 7PM &nbsp;|&nbsp; Visit us at Ramnagar, Bikapur
+          </p>
+          <a
+            href="tel:+917840882270"
+            className="inline-flex items-center gap-2 mt-8 bg-white text-deepGreen font-bold px-6 py-3 rounded-xl hover:bg-cream transition-colors text-sm shadow-md"
+          >
+            Call 7840882270 to Confirm Stock
+          </a>
+        </div>
+      </section>
+
+      {/* ── 6. FAQ ── */}
+      <section className="bg-white py-14 md:py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FaqSection
+            faqs={faqs}
+            heading="Frequently Asked Questions — Mineral Mixture Cattle Bikapur"
+            headingHindi="अक्सर पूछे जाने वाले सवाल"
+          />
+        </div>
+      </section>
+
+      {/* ── 7. Related Products ── */}
+      <section className="bg-cream py-14 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-8">
+            <h2 className="text-2xl sm:text-3xl font-black text-deepGreen">
+              You May Also Like
+            </h2>
+            <Link
+              href="/products"
+              className="text-deepGreen hover:text-ochre font-semibold text-sm transition-colors flex items-center gap-1"
+            >
+              All Products
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            {relatedProducts.map((p) => (
+              <ProductCard key={p.slug} {...p} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -4,14 +4,14 @@ export const localBusinessSchema = {
   name: 'Vedic Heritage',
   alternateName: 'वैदिक हेरिटेज',
   description:
-    'Authorized Kapila Pashu Aahar dealer in Ayodhya. Pure havan samagri, cow dung cake, hawan sticks. Free delivery within 25km.',
+    'Authorized cattle feed & puja products dealer in Ramnagar, Bikapur, Ayodhya District. Visit our store 8AM–7PM. Call 7840882270.',
   url: 'https://vedicheritage.in',
-  telephone: '+919999999999',
+  telephone: '+917840882270',
   priceRange: '₹₹',
   image: 'https://vedicheritage.in/og-image.jpg',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Near Ram Mandir, Ayodhya',
+    streetAddress: 'Ramnagar, Bikapur, Ayodhya District, Eastern UP',
     addressLocality: 'Ayodhya',
     addressRegion: 'Uttar Pradesh',
     postalCode: '224001',
@@ -19,15 +19,15 @@ export const localBusinessSchema = {
   },
   geo: {
     '@type': 'GeoCoordinates',
-    latitude: 26.7922,
-    longitude: 82.1998,
+    latitude: 26.5151,
+    longitude: 82.1319,
   },
-  hasMap: 'https://maps.google.com/?q=26.7922,82.1998',
+  hasMap: 'https://maps.google.com/?q=26.5151,82.1319',
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '09:00',
+      opens: '08:00',
       closes: '19:00',
     },
   ],
@@ -38,6 +38,8 @@ export const localBusinessSchema = {
     { '@type': 'City', name: 'Sohawal' },
     { '@type': 'City', name: 'Milkipur' },
     { '@type': 'City', name: 'Rudauli' },
+    { '@type': 'City', name: 'Bharatkund' },
+    { '@type': 'City', name: 'Goshainganj' },
   ],
   sameAs: [],
 };

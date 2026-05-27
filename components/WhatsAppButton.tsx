@@ -1,6 +1,6 @@
 'use client';
 
-const WHATSAPP_NUMBER = '919999999999';
+const WHATSAPP_NUMBER = '919911662492';
 const WHATSAPP_MESSAGE =
   'नमस्ते! मुझे Vedic Heritage के products के बारे में जानकारी चाहिए।';
 
