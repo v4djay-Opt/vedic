@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 const BRANDS = [
   { name: 'Kapila Pashu Aahar', slug: 'kapila-pashu-aahar-ayodhya', icon: '🐄', desc: 'Premium dairy feed' },
-  { name: 'Bansuri Pashu Aahar', slug: 'bansuri-pashu-aahar-bikapur', icon: '�', desc: 'Best selling brand' },
+  { name: 'Bansuri Pashu Aahar', slug: 'bansuri-pashu-aahar-bikapur', icon: '🐄', desc: 'Best selling brand' },
   { name: 'Brajwasi Feeds', slug: 'brajwasi-feeds-bikapur', icon: '🐄', desc: 'Popular cattle feed' },
   { name: 'Godrej Agrovet', slug: 'godrej-agrovet-bikapur', icon: '🐄', desc: 'Trusted brand' },
 ];
@@ -21,7 +21,7 @@ function LogoImage() {
   const [imgError, setImgError] = useState(false);
   if (imgError) {
     return (
-      <svg className="w-40 h-16 text-deepGreen shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <svg className="w-40 h-16 text-white shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M21 3C21 3 14 5 12 12C10 5 3 3 3 3C3 3 3 14 10 17C10.57 17.21 11.29 17.36 12 17.41V21H13V17.41C13.71 17.36 14.43 17.21 15 17C22 14 21 3 21 3Z" />
       </svg>
     );
@@ -46,7 +46,6 @@ export default function Navbar() {
   const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const pathname = usePathname();
-  const [transparent, setTransparent] = useState(false);
   const brandsRef = useRef<HTMLDivElement>(null);
   const productsRef = useRef<HTMLDivElement>(null);
   const productsTimeout = useRef<number>(0);
@@ -71,17 +70,14 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    setTransparent(pathname !== '/');
-  }, [pathname]);
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        transparent && !scrolled
-          ? 'bg-transparent border-b border-transparent'
-          : 'bg-white border-b border-gray-100'
-      } ${scrolled ? 'shadow-md' : 'shadow-none'}`}
+      className={`sticky top-0 z-50 transition-all duration-300 border-b ${
+        scrolled
+          ? 'bg-deepGreen/95 backdrop-blur-sm border-white/10 shadow-md'
+          : 'bg-transparent border-transparent'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
@@ -95,17 +91,17 @@ export default function Navbar() {
           <nav className="hidden md:flex items-center gap-7" aria-label="Main navigation">
             <Link
               href="/"
-              className={`font-medium text-sm transition-colors duration-150 relative group ${transparent && !scrolled ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-deepGreen'}`}
+              className="font-medium text-sm transition-colors duration-150 relative group text-white/90 hover:text-white"
             >
               Home
-              <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 ${transparent && !scrolled ? 'bg-white' : 'bg-deepGreen'}`} />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 bg-white" />
             </Link>
             <Link
               href="/about"
-              className={`font-medium text-sm transition-colors duration-150 relative group ${transparent && !scrolled ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-deepGreen'}`}
+              className="font-medium text-sm transition-colors duration-150 relative group text-white/90 hover:text-white"
             >
               About Us
-              <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 ${transparent && !scrolled ? 'bg-white' : 'bg-deepGreen'}`} />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 bg-white" />
             </Link>
 
             {/* Products dropdown */}
@@ -122,7 +118,7 @@ export default function Navbar() {
             >
               <button
                 onClick={() => setProductsOpen((p) => !p)}
-                className={`flex items-center gap-1 font-medium text-sm transition-colors duration-150 relative group ${transparent && !scrolled ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-deepGreen'}`}
+                className="flex items-center gap-1 font-medium text-sm transition-colors duration-150 relative group text-white/90 hover:text-white"
               >
                 Products
                 <svg
@@ -133,7 +129,7 @@ export default function Navbar() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-                <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 ${transparent && !scrolled ? 'bg-white' : 'bg-deepGreen'}`} />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 bg-white" />
               </button>
 
               {productsOpen && (
@@ -183,7 +179,7 @@ export default function Navbar() {
             >
               <button
                 onClick={() => setBrandsOpen((p) => !p)}
-                className={`flex items-center gap-1 font-medium text-sm transition-colors duration-150 relative group ${transparent && !scrolled ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-deepGreen'}`}
+                className="flex items-center gap-1 font-medium text-sm transition-colors duration-150 relative group text-white/90 hover:text-white"
               >
                 Brands
                 <svg
@@ -194,7 +190,7 @@ export default function Navbar() {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-                <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 ${transparent && !scrolled ? 'bg-white' : 'bg-deepGreen'}`} />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 bg-white" />
               </button>
 
               {brandsOpen && (
@@ -235,17 +231,17 @@ export default function Navbar() {
 
             <Link
               href="/blog"
-              className={`font-medium text-sm transition-colors duration-150 relative group ${transparent && !scrolled ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-deepGreen'}`}
+              className="font-medium text-sm transition-colors duration-150 relative group text-white/90 hover:text-white"
             >
               Blog
-              <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 ${transparent && !scrolled ? 'bg-white' : 'bg-deepGreen'}`} />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 bg-white" />
             </Link>
             <Link
               href="/contact"
-              className={`font-medium text-sm transition-colors duration-150 relative group ${transparent && !scrolled ? 'text-white/90 hover:text-white' : 'text-gray-600 hover:text-deepGreen'}`}
+              className="font-medium text-sm transition-colors duration-150 relative group text-white/90 hover:text-white"
             >
               Contact us
-              <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 ${transparent && !scrolled ? 'bg-white' : 'bg-deepGreen'}`} />
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-200 bg-white" />
             </Link>
           </nav>
 
@@ -253,7 +249,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href="tel:+917840882270"
-              className={`hidden sm:inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 ${transparent && !scrolled ? 'border-2 border-white text-white hover:bg-white hover:text-deepGreen' : 'border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white'}`}
+              className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-200 border-2 border-white text-white hover:bg-white hover:text-deepGreen"
             >
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
@@ -264,7 +260,7 @@ export default function Navbar() {
             {/* Hamburger */}
             <button
               onClick={() => setMenuOpen((prev) => !prev)}
-              className={`md:hidden p-2 rounded-lg transition-colors ${transparent && !scrolled ? 'text-white hover:text-white/80 hover:bg-white/10' : 'text-gray-600 hover:text-deepGreen hover:bg-gray-100'}`}
+              className="md:hidden p-2 rounded-lg transition-colors text-white hover:text-white/80 hover:bg-white/10"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >

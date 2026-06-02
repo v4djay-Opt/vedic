@@ -184,7 +184,7 @@ export default async function BrandsPage() {
                       </svg>
                     </span>
                     <a
-                      href="https://wa.me/919999999999"
+                      href="https://wa.me/919911662492"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 border border-deepGreen text-deepGreen text-xs font-semibold px-4 py-2 rounded-lg hover:bg-deepGreen/10 transition-colors"
@@ -210,7 +210,7 @@ export default async function BrandsPage() {
           </p>
           <div className="flex items-center justify-center gap-4 mt-7">
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919911662492"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white text-deepGreen font-bold text-sm px-6 py-3 rounded-xl hover:bg-white/90 transition-colors shadow-md"
@@ -218,7 +218,7 @@ export default async function BrandsPage() {
               WhatsApp Inquiry
             </a>
             <a
-              href="tel:+919999999999"
+              href="tel:+917840882270"
               className="inline-flex items-center gap-2 border-2 border-white/30 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:border-white/60 transition-colors"
             >
               Call Us

@@ -149,7 +149,7 @@ export default async function HomePage() {
       <HeroSection />
 
       {/* ── 2. Features ── */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white pt-12 pb-16 md:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <SectionPill label="WHY CHOOSE US" />

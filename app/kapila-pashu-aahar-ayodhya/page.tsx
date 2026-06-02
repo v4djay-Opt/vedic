@@ -43,7 +43,7 @@ const faqs: FaqItem[] = [
   {
     q: 'Ayodhya mein Kapila Pashu Aahar kahan milta hai?',
     qHindi: 'कपिला पशु आहार अयोध्या में कहाँ मिलता है?',
-    a: 'Vedic Heritage is the authorized dealer of Kapila Pashu Aahar in Ayodhya and surrounding areas including Faizabad, Bikapur, Sohawal, and Milkipur. Call or WhatsApp us at +91 99999 99999 to place your order.',
+    a: 'Vedic Heritage is the authorized dealer of Kapila Pashu Aahar in Ayodhya and surrounding areas including Faizabad, Bikapur, Sohawal, and Milkipur. Call or WhatsApp us at +91 78408 82270 to place your order.',
   },
   {
     q: 'Kapila Pashu Aahar ki price kya hai Ayodhya mein?',
@@ -115,7 +115,7 @@ const relatedProducts = [
   { title: 'Bulk Order', titleHindi: 'थोक ऑर्डर', badge: 'Best Value', slug: 'bulk-inquiry', inquiryBased: true as const },
 ];
 
-const WA_ORDER = `https://wa.me/919999999999?text=${encodeURIComponent('नमस्ते! मुझे Kapila Pashu Aahar चाहिए। कृपया price और delivery बताएं।')}`;
+const WA_ORDER = `https://wa.me/919911662492?text=${encodeURIComponent('नमस्ते! मुझे Kapila Pashu Aahar चाहिए। कृपया price और delivery बताएं।')}`;
 
 /* ─── WA icon shared ───────────────────────────────────────── */
 function WaIcon() {
@@ -340,7 +340,7 @@ export default function KapilaPashuAaharPage() {
                     WhatsApp pe Order Karein
                   </a>
                   <a
-                    href="tel:+919999999999"
+                    href="tel:+917840882270"
                     className="flex items-center justify-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-5 py-3 rounded-xl transition-all text-sm w-full"
                   >
                     <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

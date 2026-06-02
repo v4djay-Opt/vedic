@@ -104,7 +104,7 @@ export default async function BrandPage({ params }: PageProps) {
                   href={brand.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-deepGreen hover:text-ochre text-sm font-medium mt-3 transition-colors"
+                  className="inline-flex items-center gap-1.5 text-white hover:text-ochre text-sm font-medium mt-3 transition-colors"
                 >
                   Visit Website →
                 </a>
@@ -149,7 +149,7 @@ export default async function BrandPage({ params }: PageProps) {
                 Check back soon or contact us for availability.
               </p>
               <a
-                href="https://wa.me/919999999999"
+                href="https://wa.me/919911662492"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-6 bg-deepGreen text-white font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-deepGreen/90 transition-colors"

@@ -97,8 +97,14 @@ export default function Footer() {
   return (
     <footer>
       {/* Main body */}
-      <div className="bg-deepGreen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="relative bg-deepGreen">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-70"
+          style={{ backgroundImage: 'url(/images/footerbg.png)' }}
+        />
+        <div className="absolute inset-0 bg-deepGreen/40" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
             {/* Col 1 — About + Logo + Social */}
@@ -249,7 +255,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="bg-deepGreen border-t border-white/10">
+      <div className="relative bg-deepGreen/90 backdrop-blur-sm border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <p className="text-white/60 text-sm">

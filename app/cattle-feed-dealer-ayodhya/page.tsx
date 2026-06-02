@@ -94,7 +94,7 @@ const relatedProducts = [
   { title: 'Bulk Order', titleHindi: 'थोक ऑर्डर', badge: 'Best Value', slug: 'bulk-inquiry', inquiryBased: true as const },
 ];
 
-const WA_ORDER = `https://wa.me/919999999999?text=${encodeURIComponent('नमस्ते! मुझे Cattle Feed चाहिए। कृपया price और availability बताएं।')}`;
+const WA_ORDER = `https://wa.me/919911662492?text=${encodeURIComponent('नमस्ते! मुझे Cattle Feed चाहिए। कृपया price और availability बताएं।')}`;
 
 function WaIcon() {
   return (
@@ -313,7 +313,7 @@ export default function CattleFeedDealerPage() {
                     WhatsApp pe Order Karein
                   </a>
                   <a
-                    href="tel:+919999999999"
+                    href="tel:+917840882270"
                     className="flex items-center justify-center gap-2 border-2 border-deepGreen text-deepGreen hover:bg-deepGreen hover:text-white font-semibold px-5 py-3 rounded-xl transition-all text-sm w-full"
                   >
                     <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

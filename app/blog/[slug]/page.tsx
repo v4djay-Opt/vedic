@@ -139,7 +139,7 @@ const ptComponents: PortableTextComponents = {
 // Sidebar sub-components
 // ---------------------------------------------------------------------------
 
-const WA_CTA = `https://wa.me/919999999999?text=${encodeURIComponent(
+const WA_CTA = `https://wa.me/919911662492?text=${encodeURIComponent(
   'नमस्ते! मुझे आपके products के बारे में जानकारी चाहिए।'
 )}`;
 
