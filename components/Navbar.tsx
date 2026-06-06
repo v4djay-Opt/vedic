@@ -58,6 +58,13 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    // TransparentHeader component sets this attribute on hero pages
+    if (document.body.dataset.headerTransparent === 'true') {
+      setScrolled(false);
+    }
+  }, []);
+
+  useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (brandsRef.current && !brandsRef.current.contains(e.target as Node)) {
         setBrandsOpen(false);

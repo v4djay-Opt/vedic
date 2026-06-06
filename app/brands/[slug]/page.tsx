@@ -10,6 +10,8 @@ import {
   type BrandWithProducts,
 } from '@/lib/sanity.queries';
 import ProductCard from '@/components/ProductCard';
+import JsonLd from '@/components/JsonLd';
+import BreadcrumbList from '@/components/BreadcrumbList';
 
 interface PageProps {
   params: { slug: string };
@@ -47,76 +49,101 @@ export default async function BrandPage({ params }: PageProps) {
 
   if (!brand) notFound();
 
+  const brandSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Brand',
+    name: brand.name,
+    description: brand.description ?? '',
+    url: brand.website ?? `https://vedicheritage.in/brands/${brand.slug.current}`,
+    logo: brand.logo
+      ? { '@type': 'ImageObject', url: urlFor(brand.logo).width(200).url() }
+      : undefined,
+  };
+
   return (
-    <main>
-      {/* Brand Hero Banner */}
-      <section className="relative bg-deepGreen -mt-24 pt-24 flex items-center h-[55vh] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <svg className="absolute -top-20 -right-20 w-80 h-80 text-white/5" viewBox="0 0 200 200" fill="currentColor">
-            <circle cx="100" cy="100" r="100" />
-          </svg>
-          <svg className="absolute top-1/3 -left-12 w-48 h-48 text-white/5" viewBox="0 0 200 200" fill="currentColor">
-            <ellipse cx="100" cy="100" rx="100" ry="70" />
-          </svg>
-          <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Link
-            href="/brands"
-            className="inline-flex items-center gap-1.5 text-white/60 hover:text-white text-sm font-medium mb-8 transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+    <>
+      <JsonLd schema={brandSchema as Record<string, unknown>} />
+      <main>
+        {/* Brand Hero Banner */}
+        <section className="relative bg-deepGreen -mt-24 pt-24 flex items-center h-[55vh] overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <svg className="absolute -top-20 -right-20 w-80 h-80 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+              <circle cx="100" cy="100" r="100" />
             </svg>
-            All Brands
-          </Link>
-          <div className="flex flex-col items-center gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden shrink-0">
-              {brand.logo ? (
-                <Image
-                  src={urlFor(brand.logo).width(160).height(160).url()}
-                  alt={brand.name}
-                  width={80}
-                  height={80}
-                  className="object-contain"
-                />
-              ) : (
-                <span className="text-4xl">🌿</span>
-              )}
-            </div>
-            <div>
-              <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/90 text-[11px] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full mb-3">
-                Brand
+            <svg className="absolute top-1/3 -left-12 w-48 h-48 text-white/5" viewBox="0 0 200 200" fill="currentColor">
+              <ellipse cx="100" cy="100" rx="100" ry="70" />
+            </svg>
+            <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+          </div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Link
+              href="/brands"
+              className="inline-flex items-center gap-1.5 text-white/60 hover:text-white text-sm font-medium mb-8 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+              </svg>
+              All Brands
+            </Link>
+            <div className="flex flex-col items-center gap-6">
+              <div className="w-20 h-20 rounded-2xl bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden shrink-0">
+                {brand.logo ? (
+                  <Image
+                    src={urlFor(brand.logo).width(160).height(160).url()}
+                    alt={brand.name}
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                ) : (
+                  <span className="text-4xl">🌿</span>
+                )}
               </div>
-              <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight">
-                {brand.name}
-              </h1>
-              {brand.tagline && (
-                <p className="text-white/50 text-sm mt-1">{brand.tagline}</p>
-              )}
-              {brand.description && (
-                <p className="text-white/70 text-sm mt-3 max-w-2xl leading-relaxed">
-                  {brand.description}
-                </p>
-              )}
-              {brand.website && (
-                <a
-                  href={brand.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-white hover:text-ochre text-sm font-medium mt-3 transition-colors"
-                >
-                  Visit Website →
-                </a>
-              )}
+              <div>
+                <div className="inline-flex items-center bg-white/10 border border-white/20 text-white/90 text-[11px] font-bold tracking-[0.14em] uppercase px-3 py-1 rounded-full mb-3">
+                  Brand
+                </div>
+                <h1 className="text-3xl sm:text-4xl font-black text-white leading-tight">
+                  {brand.name}
+                </h1>
+                {brand.tagline && (
+                  <p className="text-white/50 text-sm mt-1">{brand.tagline}</p>
+                )}
+                {brand.description && (
+                  <p className="text-white/70 text-sm mt-3 max-w-2xl leading-relaxed">
+                    {brand.description}
+                  </p>
+                )}
+                {brand.website && (
+                  <a
+                    href={brand.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-white hover:text-ochre text-sm font-medium mt-3 transition-colors"
+                  >
+                    Visit Website →
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Products */}
-      <section className="bg-white py-14 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-4">
+            <BreadcrumbList
+              crumbs={[
+                { label: 'Home', href: '/' },
+                { label: 'Brands', href: '/brands' },
+                { label: brand.name },
+              ]}
+            />
+          </div>
+        </div>
+
+        {/* Products */}
+        <section className="bg-white py-14 md:py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-black text-deepGreen mb-8">
             {brand.products?.length > 0
               ? `Products by ${brand.name}`
@@ -158,8 +185,9 @@ export default async function BrandPage({ params }: PageProps) {
               </a>
             </div>
           )}
-        </div>
-      </section>
-    </main>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
